@@ -11,8 +11,8 @@ class User
 {
 protected:
     User(int ID, char *password, UserType type, string &name);
-private:
     int ID;
+private:
     char password[16];  // 128-bit hashed value
     string name;
     UserType type;
@@ -53,7 +53,7 @@ class Teacher: public User
 {
 public:
     void ViewMyCourses();  // show courses that the teacher teaches
-    void Marks(Course c, Section s);  // mark grade of one course, here we can invoke some Qt functions here to show a table for the user to edit
+    void Marks(Course c, Section s);  // mark grade of one course, we can invoke some Qt functions here to show a table for the user to edit
 };
 
 class Administrator: public User
