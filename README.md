@@ -47,10 +47,10 @@ Maintainers: [a530537501](https://github.com/a530537501), SiyuXie0601, [Stephen 
 每个表格对应的类
 
 ### Duty Assignments
-* 谢思宇: 界面设计 **Deadline: June 7, 2016**
+* 谢思宇: 界面设计 **Deadline: June 10, 2016**
 
-* 谢嘉豪: 头文件  **Deadline: June 7, 2016**
+* 谢嘉豪: 头文件  **Deadline: June 10, 2016**
 
-* 陈梓敏: 成员函数实现  **Deadline: June 7, 2016**
+* 陈梓敏: 成员函数实现  **Deadline: June 10, 2016**
 
-* 郑雨薇: 成员函数实现  **Deadline: June 7, 2016**
+* 郑雨薇: 成员函数实现  **Deadline: June 10, 2016**
