@@ -1,16 +1,16 @@
 #schema.sql
-drop table takes;
-drop table teaches;
-drop table section;
-drop table student;
-drop table teacher;
-drop table administrator;
-drop table course;
-drop table classromm;
-drop table timeSlot;
-drop table user;
+drop table Takes;
+drop table Teaches;
+drop table Section;
+drop table Student;
+drop table Teacher;
+drop table Administrator;
+drop table Course;
+drop table Classroom;
+drop table TimeSlot;
+drop table User;
 
-create table user
+create table User
 (
     ID int ZEROFILL UNSIGNED NOT NULL,
     type varchar(13) CHECK (type in ('student', 'teacher', 'administrator')),
@@ -18,7 +18,7 @@ create table user
     primary key(ID, type)
 );
 
-create table student
+create table Student
 (
     ID int(6) ZEROFILL UNSIGNED NOT NULL,
     name varchar(20) NOT NULL,
@@ -28,7 +28,7 @@ create table student
     primary key(ID)
 );
 
-create table teacher
+create table Teacher
 (
     ID int(4) ZEROFILL UNSIGNED NOT NULL,
     name varchar(20) NOT NULL,
@@ -36,14 +36,15 @@ create table teacher
     primary key(ID)
 );
 
-create table administrator
+create table Administrator
 (
     ID int(4) ZEROFILL UNSIGNED NOT NULL,
     name varchar(20) NOT NULL,
+    deptName varchar(30),
     primary key(ID)
 );
 
-create table course
+create table Course
 (
     courseID int(6) ZEROFILL UNSIGNED NOT NULL,
     title varchar(30) NOT NULL,
@@ -52,7 +53,7 @@ create table course
     primary key(courseID)
 );
 
-create table section
+create table Section
 (
     courseID int(6) ZEROFILL UNSIGNED NOT NULL,
     secID int,
@@ -64,10 +65,10 @@ create table section
     roomNo int,
     timeSlotID int,
     primary key(courseID, secID, semester, year, building),
-    foreign key (courseID) references course(courseID)
+    foreign key (courseID) references Course(courseID)
 );
 
-create table takes
+create table Takes
 (
     ID int(6) ZEROFILL UNSIGNED NOT NULL,
     courseID int(6) ZEROFILL UNSIGNED NOT NULL,
@@ -76,11 +77,11 @@ create table takes
     year int(4) CHECK (year >= 1897),
     grade numeric(2,1) CHECK (grade >= 0 and grade <= 5.0),
     primary key(ID, courseID, secID, semester, year),
-    foreign key (ID) references student(ID),
-    foreign key (courseID) references course(courseID)
+    foreign key (ID) references Student(ID),
+    foreign key (courseID) references Course(courseID)
 );
 
-create table teaches
+create table Teaches
 (
     ID int(4) ZEROFILL UNSIGNED NOT NULL,
     courseID int(6) ZEROFILL UNSIGNED NOT NULL,
@@ -88,11 +89,11 @@ create table teaches
     semester varchar(6) CHECK (semester in ('Spring', 'Summer', 'Fall', 'Winter')),
     year int(4) CHECK (year >= 1897),
     primary key(ID, courseID, semester, year),
-    foreign key(ID) references teacher(ID),
-    foreign key (courseID) references course(courseID)
+    foreign key(ID) references Teacher(ID),
+    foreign key (courseID) references Course(courseID)
 );
 
-create table classromm
+create table Classroom
 (
     building varchar(30),
     roomNo int,
@@ -100,7 +101,7 @@ create table classromm
     primary key(building, roomNo)
 );
 
-create table timeSlot
+create table TimeSlot
 (
     timeSlotID int,
     day char(3) CHECK(day in ('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun')),
