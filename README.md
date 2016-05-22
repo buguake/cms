@@ -1,7 +1,7 @@
 ## Course Management System
 This project is a simple implementation of couse management system (cms) in C++.
 
-Maintainers: [a530537501](https://github.com/a530537501), SiyuXie0601, [Stephen Tse](https://github.com/xjiajiahao), yuweizheng.
+Maintainers: [a530537501](https://github.com/a530537501), [SiyuXie0601](https://github.com/SiyuXie0601), [Stephen Tse](https://github.com/xjiajiahao), [yuweizheng](https://github.com/yuweizheng).
 
 ### Overview
 选课系统主要面向学生、老师、管理员三种用户:
