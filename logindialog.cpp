@@ -33,7 +33,7 @@ LoginDialog::~LoginDialog()
 void LoginDialog::on_checkinbutton_click(){
     QString name=ui->namelineedit->text();
     QString key=ui->passwordlineedit->text();
-    book ok;
+    bool ok;
     int ID=name.toInt(&ok,10);
     string password=key.toStdString();
 
