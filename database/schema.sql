@@ -109,3 +109,4 @@ create table TimeSlot
     endTime time,
     primary key(timeSlotID, day, startTime)
 );
+

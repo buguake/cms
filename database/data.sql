@@ -119,3 +119,4 @@ INSERT INTO TimeSlot values(4, 'Thu', '18:30:00', '20:05:00');
 INSERT INTO TimeSlot values(5, 'Fri', '15:50:00', '17:30:00');
 INSERT INTO TimeSlot values(6, 'Wed', '08:00:00', '09:35:00');
 INSERT INTO TimeSlot values(7, 'Tue', '08:00:00', '09:35:00');
+
