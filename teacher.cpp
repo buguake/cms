@@ -145,6 +145,7 @@ void teacher::on_searchbuttonmark_click(){
         check->setTextAlignment(Qt::AlignCenter);
         ui->tableWidget_2->setItem(i,8,check);
     }
+    teac.Tresult.clear();
 }
 
 void teacher::on_searchbuttonselect_click(){
@@ -176,8 +177,8 @@ void teacher::on_searchbuttonselect_click(){
         ui->tableWidget_3->item(i,6)->setFlags(Qt::NoItemFlags);
         ui->tableWidget_3->setItem(i,7,new QTableWidgetItem(teac.Tresult[i*row+(j++)]));
         ui->tableWidget_3->item(i,7)->setFlags(Qt::NoItemFlags);
-
     }
+    teac.Tresult.clear();
 }
 
 void teacher::on_refresh_click(){
@@ -203,4 +204,5 @@ void teacher::on_refresh_click(){
         ui->tableWidget->setItem(i,6,new QTableWidgetItem(teac.Tresult[i*row+(j++)]));
         ui->tableWidget->item(i,6)->setFlags(Qt::NoItemFlags);
     }
+    teac.Tresult.clear();
 }

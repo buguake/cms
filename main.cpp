@@ -9,10 +9,6 @@
 
 using namespace std;
 
-//extern vector <QString> Sresult;
-//extern vector <QString> Tresult;
-//extern vector <QString> Aresult;
-
 student Student;
 LoginDialog logindialog;
 teacher Teacher;

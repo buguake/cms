@@ -2,7 +2,7 @@
 #define USER_H
 
 #include <cstring>
-#include <QString>
+#include <Qstring>
 #include <QSqlQuery>
 #include <QSqlDatabase>
 #include <QVariant>

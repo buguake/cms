@@ -211,5 +211,6 @@ void student::on_searchbutton_click(){
         check->setTextAlignment(Qt::AlignCenter);
         ui->selectcoursewidget->setItem(i,13,check);
     }
+    stud.Sresult.clear();
 }
 

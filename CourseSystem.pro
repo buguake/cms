@@ -45,4 +45,4 @@ FORMS    += \
 RESOURCES += \
     src.qrc
 QT +=sql
-UI_DIR=./UI
+

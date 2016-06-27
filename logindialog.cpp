@@ -32,25 +32,28 @@ LoginDialog::~LoginDialog()
 
 void LoginDialog::on_checkinbutton_click(){
     QString name=ui->namelineedit->text();
-    QString key=ui->passwordlineedit->text();
+    QString key=ui->passwordline->text();
     bool ok;
     int ID=name.toInt(&ok,10);
     string password=key.toStdString();
 
     if(ui->studentratdio->isChecked()){
-        Student.stud(ID,password,"null","null");
+        Student.stud.SetID(ID);
+        Student.stud.SetPassword(password);
         if(Student.stud.Login()){
           QDialog::accept();
         }
     }
     else if(ui->teacherradio->isChecked()){
-        Teacher.teac(ID,password,"null","null");
+        Teacher.teac.SetID(ID);
+        Teacher.teac.SetPassword(password);
         if(Teacher.teac.Login()){
           QDialog::done(2);
         }
     }
     else if(ui->managerradio->isChecked()){
-        Manager.admi(ID,password,"null","null");
+        Manager.admi.SetID(ID);
+        Manager.admi.SetPassword(password);
         if(Manager.admi.Login()){
             QDialog::done(3);
         }
