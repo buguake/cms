@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/logo.png</file>
+        <file>images/logo1.png</file>
+        <file>images/ZJU.jpg</file>
+        <file>images/ZJU1.jpg</file>
+        <file>images/ZJU2.jpg</file>
+        <file>images/ZJU3.jpg</file>
+        <file>images/user.jpg</file>
+        <file>images/user1.png</file>
+        <file>images/xiaohui.png</file>
+        <file>images/fangdajing.png</file>
+        <file>images/plus.png</file>
+    </qresource>
+</RCC>
