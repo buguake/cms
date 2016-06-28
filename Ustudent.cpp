@@ -263,9 +263,12 @@ int UStudent::SearchSection(const string &title)
 
     str = "select * from Section where courseID = ";
     str += courseID;
+    /* @ST I would like to show courses available in 2016
     str += " and year = 2016 and semester = 'Fall' union select * from Section where courseID = ";
     str += courseID;
     str += " and year = 2016 and semester = 'Winter'";
+    */
+    str += " and year = 2016";
 
     if(!query.exec(str))
         return 0;
