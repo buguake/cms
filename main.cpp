@@ -21,11 +21,11 @@ manager Manager;
 int main(int argc, char *argv[])
 {
     QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
-    db.setHostName("127.0.0.1");
-    db.setDatabaseName("cms_master");
-    db.setUserName("root");
-    db.setPassword("LRrg970328");
-    bool ok = db.open();
+    db.setHostName("xjiajiahao.tk");
+    db.setDatabaseName("cms");
+    db.setUserName("cms");
+    db.setPassword("1897");
+    db.open();
 
     QApplication a(argc, argv);
 
