@@ -6,9 +6,9 @@
 #include"teacher.h"
 #include"manager.h"
 
-extern student Student;
-extern teacher Teacher;
-extern manager Manager;
+extern student *Student;
+extern teacher *Teacher;
+extern manager *Manager;
 
 
 LoginDialog::LoginDialog(QWidget *parent) :
@@ -38,23 +38,23 @@ void LoginDialog::on_checkinbutton_click(){
     string password=key.toStdString();
 
     if(ui->studentratdio->isChecked()){
-        Student.stud.SetID(ID);
-        Student.stud.SetPassword(password.c_str());
-        if(Student.stud.Login()){
+        Student->stud.SetID(ID);
+        Student->stud.SetPassword(password.c_str());
+        if(Student->stud.Login()){
           QDialog::accept();
         }
     }
     else if(ui->teacherradio->isChecked()){
-        Teacher.teac.SetID(ID);
-        Teacher.teac.SetPassword(password.c_str());
-        if(Teacher.teac.Login()){
+        Teacher->teac.SetID(ID);
+        Teacher->teac.SetPassword(password.c_str());
+        if(Teacher->teac.Login()){
           QDialog::done(2);
         }
     }
     else if(ui->managerradio->isChecked()){
-        Manager.admi.SetID(ID);
-        Manager.admi.SetPassword(password.c_str());
-        if(Manager.admi.Login()){
+        Manager->admi.SetID(ID);
+        Manager->admi.SetPassword(password.c_str());
+        if(Manager->admi.Login()){
             QDialog::done(3);
         }
     }
