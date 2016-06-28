@@ -4,10 +4,10 @@
 /*construtors for class teacher*/
 
 UTeacher::UTeacher(void)
-        :User(-1, "******", "teacher", "null", "null"){}
+    : User(-1, "******", "teacher", "null", "null"){}
 
 UTeacher::UTeacher(const int ID, const string &password, const string &name, const string &deptname)
-        :User(ID, password, "teacher", name, deptname){}
+    : User(ID, password, "teacher", name, deptname){}
 
 // show courses that the teacher teaches
 int UTeacher::ViewMyCourses()
@@ -19,11 +19,11 @@ int UTeacher::ViewMyCourses()
     str += QString::number(ID);
 
     QSqlQuery query;
-    if(!query.exec(str)){
+    if(!query.exec(str)) {
         return 0;
     }
     else{
-        while(query.next()){
+        while(query.next()) {
             /*get record number, courseID*/
 
             RecordNum = query.size();
@@ -38,9 +38,9 @@ int UTeacher::ViewMyCourses()
             str2 += courseID;
             if(!query2.exec(str2))
                 return 0;
-             /*get courseID, secID, semester, year*/
+            /*get courseID, secID, semester, year*/
 
-            while(query2.next()){
+            while(query2.next()) {
                 for(int i = 1; i < 4; i++)
                     Tresult.push_back(query2.value(i).toString());
             }
@@ -60,12 +60,12 @@ int UTeacher::ViewMyNewStudent(const Section &s)
     str += QString::number(s.GetCourseID());
 
     QSqlQuery query;
-    if(!query.exec(str)){
+    if(!query.exec(str)) {
         return 0;
     }
     else{
         /*get title, deptName*/
-        while(query.next()){
+        while(query.next()) {
             title = query.value("title").toString();
             deptName = query.value("deptName").toString();
         }
@@ -78,22 +78,22 @@ int UTeacher::ViewMyNewStudent(const Section &s)
     str += " and secID = ";
     str += QString::number(s.GetSecID());
     /* @ST I would like to show all courses in 2016
-    str += " and year = 2016 and semester = 'Fall' union ";
-    str += "select * from Takes where courseID = ";
-    str += QString::number(s.GetCourseID());
-    str += " and secID = ";
-    str += QString::number(s.GetSecID());
-    str += " and year = 2016 and semester = 'Winter'";
-    */
+       str += " and year = 2016 and semester = 'Fall' union ";
+       str += "select * from Takes where courseID = ";
+       str += QString::number(s.GetCourseID());
+       str += " and secID = ";
+       str += QString::number(s.GetSecID());
+       str += " and year = 2016 and semester = 'Winter'";
+     */
     str += " and year = 2016";
-    if(!query.exec(str)){
+    if(!query.exec(str)) {
         return 0;
     }
     else{
 
         /*get ID, secID, semester, year*/
 
-        while(query.next()){
+        while(query.next()) {
             RecordNum = query.size();
             for(int i = 0; i < 2; i++)
                 Tresult.push_back(query.value(i).toString());
@@ -116,12 +116,12 @@ int UTeacher::ViewMyOldStudent(const Section &s)  //show students who takes the 
     str += QString::number(s.GetCourseID());
 
     QSqlQuery query;
-    if(!query.exec(str)){
+    if(!query.exec(str)) {
         return 0;
     }
     else{
         /*get title, deptName*/
-        while(query.next()){
+        while(query.next()) {
             title = query.value("title").toString();
             deptName = query.value("deptName").toString();
         }
@@ -134,18 +134,18 @@ int UTeacher::ViewMyOldStudent(const Section &s)  //show students who takes the 
     str += " and secID = ";
     str += QString::number(s.GetSecID());
     /* @ST students in 2016 can be marked @TODO
-    str += " and year = 2016 and semester = 'Summer'";
-    */
+       str += " and year = 2016 and semester = 'Summer'";
+     */
     str += " and year = 2016";
 
-    if(!query.exec(str)){
+    if(!query.exec(str)) {
         return 0;
     }
     else{
 
         /*get ID, secID, semester, year*/
 
-        while(query.next()){
+        while(query.next()) {
             RecordNum = query.size();
             for(int i = 0; i < 2; i++)
                 Tresult.push_back(query.value(i).toString());
@@ -171,10 +171,10 @@ bool UTeacher::Marks(int ID, const Section &s, double grade)
     str += " and secID = ";
     str += QString::number(s.GetSecID());
     /* @ST here, it should be available if the we take the course in 2016 @TODO
-    str += " and year = 2016 and semester = 'Summer'";
-    */
+       str += " and year = 2016 and semester = 'Summer'";
+     */
     QSqlQuery query;
-    if(!query.exec(str)){
+    if(!query.exec(str)) {
         return false;
     }
     else

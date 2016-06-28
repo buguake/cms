@@ -4,13 +4,15 @@
 /*constructor for class UStudent*/
 
 UStudent::UStudent(void)
-        :User(-1, "******", "Student", "null", "null"){}
+    : User(-1, "******", "Student", "null", "null"){
+}
 
 UStudent::UStudent(const int ID, const string &password, const string &name, const string &deptname)
-        :User(ID, password, "Student", name, deptname){}
+    : User(ID, password, "Student", name, deptname){
+}
 
 UStudent::UStudent(const int ID, const string &password, const string &name, const string &deptname, const string &birthday, const string &gender)
-        :User(ID, password, "Student", name, deptname), birthday(birthday)
+    : User(ID, password, "Student", name, deptname), birthday(birthday)
 {
     SetGender(gender);
 }
@@ -27,12 +29,12 @@ int UStudent::ViewMyCourses()
     str += QString::number(ID);
 
     QSqlQuery query;
-    if(!query.exec(str)){
+    if(!query.exec(str)) {
         return 0;
     }
 
     else{
-        while(query.next()){
+        while(query.next()) {
             /*get record num*/
             RecordNum = query.size();
 
@@ -51,7 +53,7 @@ int UStudent::ViewMyCourses()
                 return 0;
             /*get title, deptName, credits*/
 
-            while(query2.next()){
+            while(query2.next()) {
                 for(int i = 1; i < 4; i++)
                     Sresult.push_back(query2.value(i).toString());
             }
@@ -81,13 +83,13 @@ bool UStudent::Takes(const Section &s) const
     str += "'";
 
     QSqlQuery query;
-    if(!query.exec(str)){
+    if(!query.exec(str)) {
         return false;
     }
     else{
-        while(query.next()){
+        while(query.next()) {
             int vacancy = query.value("vacancy").toInt();
-            if(vacancy <= 0){
+            if(vacancy <= 0) {
                 return false;
             }
         }
@@ -184,7 +186,7 @@ int UStudent::SearchSection(const int courseID)
         return 0;
 
     /*get title, credits*/
-    while(query.next()){
+    while(query.next()) {
         title = query.value("title").toString();
         credits = query.value("credits").toString();
     }
@@ -194,17 +196,17 @@ int UStudent::SearchSection(const int courseID)
     str = "select * from Section where courseID = ";
     str += QString::number(courseID);
     /* @ST I just want to select all courses available in 2016 @TODO
-    str += " and year = 2016 and semester = 'Fall' union select * from Section where courseID = ";
-    str += QString::number(courseID);
-    str += " and year = 2016 and semester = 'Winter'";
-    */
+       str += " and year = 2016 and semester = 'Fall' union select * from Section where courseID = ";
+       str += QString::number(courseID);
+       str += " and year = 2016 and semester = 'Winter'";
+     */
     str += " and year = 2016";
 
-    if(!query.exec(str)){  //if the query fails
+    if(!query.exec(str)) {  //if the query fails
         return 0;
     }
 
-    while(query.next()){
+    while(query.next()) {
         /*get record number*/
         RecordNum = query.size();
 
@@ -252,7 +254,7 @@ int UStudent::SearchSection(const string &title)
 
     /*get courseID, credits*/
 
-    while(query.next()){
+    while(query.next()) {
         courseID = query.value("courseID").toString();
         credits = query.value("credits").toString();
     }
@@ -270,7 +272,7 @@ int UStudent::SearchSection(const string &title)
 
     /*get secID, semester, year, capacity, vacancy, buidling, roomNo, timeSlotID*/
 
-    while(query.next()){
+    while(query.next()) {
         RecordNum = query.size();
         Sresult.push_back(courseID);
         Sresult.push_back(title.data());

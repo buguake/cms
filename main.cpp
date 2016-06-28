@@ -45,13 +45,13 @@ int main(int argc, char *argv[])
 
     int check=logindialog.exec();
 
-    if(check==1){
+    if(check==1) {
         Student->show();
     }
-    else if(check==2){
+    else if(check==2) {
         Teacher->show();
     }
-    else if(check==3){
+    else if(check==3) {
         Manager->show();
     }
 

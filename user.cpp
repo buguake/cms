@@ -3,21 +3,21 @@
 //constuctors for class User
 
 User::User(void)
-    :ID(-1),name("null"),deptName("null")
+    : ID(-1),name("null"),deptName("null")
 {
     SetPassword("******");
     SetType("null");
 }
 
 User::User(const int ID, const string &password, const string &type, const string &name, const string &deptname)
-    :ID(ID), name(name), deptName(deptname)
+    : ID(ID), name(name), deptName(deptname)
 {
     SetPassword(password.c_str());
     SetType(type);
 }
 
 User::User(const User& user)
-     :ID(user.ID), type(user.type), name(user.name), deptName(user.deptName)
+    : ID(user.ID), type(user.type), name(user.name), deptName(user.deptName)
 {
     SetPassword(user.password);
 }
@@ -44,12 +44,12 @@ bool User::Login() const
     str += "'";
 
     QSqlQuery query;
-    if(!query.exec(str)){
+    if(!query.exec(str)) {
         return false;
     }
     else{
         //see whether the result type matches
-        if(query.size()){
+        if(query.size()) {
             return true;
         }
     }

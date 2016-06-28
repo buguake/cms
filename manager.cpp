@@ -60,7 +60,7 @@ void manager::on_studentaddbutton_click(){
     deptname=ui->student_dept->text().toStdString();
     UStudent stu(ID,"******",name,deptname,birthday,gender);
     bool status=admi.AddStudent(stu);
-    if(status){
+    if(status) {
         QMessageBox::information(this,tr("提示"),tr("增加学生成功！"),QMessageBox::Ok);
     }
     else{
@@ -76,7 +76,7 @@ void manager::on_studentsearchbutton_click(){
     ui->student_table->setRowCount(row);
     /*********下面是示意如何处理梓敏返回的字符串*******/
     int i, j;
-    for(i=0;i<row;i++){
+    for(i=0; i<row; i++) {
         j=0;
         ui->student_table->setItem(i,0,new QTableWidgetItem(admi.Aresult[i*row+(j++)]));
         ui->student_table->item(i,0)->setFlags(Qt::NoItemFlags);
@@ -103,51 +103,51 @@ void manager::on_studentwidget_click(int row, int col)
     QTableWidgetItem* temp;
     int ID;
     string name,birthday,gender,deptname;
-    if(col==5){
+    if(col==5) {
         QMessageBox msgBox;
         msgBox.setText("您确定更新学生信息吗");
         msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
         msgBox.setDefaultButton(QMessageBox::No);
         int ret=msgBox.exec();
         switch (ret) {
-          case QMessageBox::Yes:{
-                temp=ui->student_table->item(row,0);
-                ID = temp->text().toInt();
-                temp=ui->student_table->item(row,1);
-                name = temp->text().toStdString();
-                temp=ui->student_table->item(row,2);
-                birthday = temp->text().toStdString();
-                temp=ui->student_table->item(row,3);
-                gender = temp->text().toStdString();
-                temp=ui->student_table->item(row,4);
-                deptname = temp->text().toStdString();
-                UStudent stu(ID,"******",name,deptname,birthday,gender);
-                bool status=admi.UpdateStudent(stu);
-                if(status){
-                    QMessageBox::information(this,tr("提示"),tr("更新学生信息成功！"),QMessageBox::Ok);
-                    on_studentsearchbutton_click();
-                    break;
-                }
-                else{
-                    QMessageBox::information(this,tr("提示"),tr("更新学生信息失败"),QMessageBox::Ok);
-                    break;
-                }
-        }
-          case QMessageBox::No:
+        case QMessageBox::Yes: {
+            temp=ui->student_table->item(row,0);
+            ID = temp->text().toInt();
+            temp=ui->student_table->item(row,1);
+            name = temp->text().toStdString();
+            temp=ui->student_table->item(row,2);
+            birthday = temp->text().toStdString();
+            temp=ui->student_table->item(row,3);
+            gender = temp->text().toStdString();
+            temp=ui->student_table->item(row,4);
+            deptname = temp->text().toStdString();
+            UStudent stu(ID,"******",name,deptname,birthday,gender);
+            bool status=admi.UpdateStudent(stu);
+            if(status) {
+                QMessageBox::information(this,tr("提示"),tr("更新学生信息成功！"),QMessageBox::Ok);
+                on_studentsearchbutton_click();
                 break;
-          default:
-              // should never be reached
-              break;
+            }
+            else{
+                QMessageBox::information(this,tr("提示"),tr("更新学生信息失败"),QMessageBox::Ok);
+                break;
+            }
+        }
+        case QMessageBox::No:
+            break;
+        default:
+            // should never be reached
+            break;
         }
     }
-    else if(col==6){
+    else if(col==6) {
         QMessageBox msgBox;
         msgBox.setText("您确定删除学生信息吗");
         msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
         msgBox.setDefaultButton(QMessageBox::No);
         int ret=msgBox.exec();
         switch (ret) {
-          case QMessageBox::Yes:{
+        case QMessageBox::Yes: {
             temp=ui->student_table->item(row,0);
             ID = temp->text().toInt();
             temp=ui->student_table->item(row,1);
@@ -160,7 +160,7 @@ void manager::on_studentwidget_click(int row, int col)
             deptname = temp->text().toStdString();
             UStudent stu(ID,"******",name,deptname,birthday,gender);
             bool status=admi.RemoveStudent(stu);
-            if(status){
+            if(status) {
                 QMessageBox::information(this,tr("提示"),tr("删除学生信息成功！"),QMessageBox::Ok);
                 on_studentsearchbutton_click();
                 break;
@@ -170,11 +170,11 @@ void manager::on_studentwidget_click(int row, int col)
                 break;
             }
         }
-          case QMessageBox::No:
-                break;
-          default:
-              // should never be reached
-              break;
+        case QMessageBox::No:
+            break;
+        default:
+            // should never be reached
+            break;
         }
     }
 }
@@ -187,7 +187,7 @@ void manager::on_teacheraddbutton_click(){
     deptname=ui->teacher_dept->text().toStdString();
     UTeacher tea(ID,"******",name,deptname);
     bool status=admi.AddTeacher(tea);
-    if(status){
+    if(status) {
         QMessageBox::information(this,tr("提示"),tr("增加老师成功！"),QMessageBox::Ok);
     }
     else{
@@ -203,7 +203,7 @@ void manager::on_teachersearchbutton_click(){
     ui->teacher_table->setRowCount(row);
     /*********下面是示意如何处理梓敏返回的字符串*******/
     int i, j;
-    for(i=0;i<row;i++){
+    for(i=0; i<row; i++) {
         j=0;
         ui->teacher_table->setItem(i,0,new QTableWidgetItem(admi.Aresult[i*row+(j++)]));
         ui->teacher_table->item(i,0)->setFlags(Qt::NoItemFlags);
@@ -228,70 +228,70 @@ void manager::on_teacherwidget_click(int row, int col)
     QTableWidgetItem* temp;
     int ID;
     string name,deptname;
-    if(col==3){
+    if(col==3) {
         QMessageBox msgBox;
         msgBox.setText("您确定更新教师信息吗");
         msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
         msgBox.setDefaultButton(QMessageBox::No);
         int ret=msgBox.exec();
         switch (ret) {
-          case QMessageBox::Yes:{
-                temp=ui->teacher_table->item(row,0);
-                ID = temp->text().toInt();
-                temp=ui->teacher_table->item(row,1);
-                name = temp->text().toStdString();
-                temp=ui->teacher_table->item(row, 2);
-                deptname = temp->text().toStdString();
-                UTeacher tea(ID,"******",name,deptname);
-                bool status=admi.UpdateTeacher(tea);
-                if(status){
-                    QMessageBox::information(this,tr("提示"),tr("更新老师信息成功！"),QMessageBox::Ok);
-                    on_teachersearchbutton_click();
-                    break;
-                }
-                else{
-                    QMessageBox::information(this,tr("提示"),tr("更新老师信息失败"),QMessageBox::Ok);
-                    break;
-                }
-        }
-          case QMessageBox::No:
+        case QMessageBox::Yes: {
+            temp=ui->teacher_table->item(row,0);
+            ID = temp->text().toInt();
+            temp=ui->teacher_table->item(row,1);
+            name = temp->text().toStdString();
+            temp=ui->teacher_table->item(row, 2);
+            deptname = temp->text().toStdString();
+            UTeacher tea(ID,"******",name,deptname);
+            bool status=admi.UpdateTeacher(tea);
+            if(status) {
+                QMessageBox::information(this,tr("提示"),tr("更新老师信息成功！"),QMessageBox::Ok);
+                on_teachersearchbutton_click();
                 break;
-          default:
-              // should never be reached
-              break;
+            }
+            else{
+                QMessageBox::information(this,tr("提示"),tr("更新老师信息失败"),QMessageBox::Ok);
+                break;
+            }
+        }
+        case QMessageBox::No:
+            break;
+        default:
+            // should never be reached
+            break;
         }
     }
-    else if(col==4){
+    else if(col==4) {
         QMessageBox msgBox;
         msgBox.setText("您确定删除教师信息吗");
         msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
         msgBox.setDefaultButton(QMessageBox::No);
         int ret=msgBox.exec();
         switch (ret) {
-          case QMessageBox::Yes:{
-                temp=ui->teacher_table->item(row,0);
-                ID = temp->text().toInt();
-                temp=ui->teacher_table->item(row,1);
-                name = temp->text().toStdString();
-                temp=ui->teacher_table->item(row, 2);
-                deptname = temp->text().toStdString();
-                UTeacher tea(ID,"******",name,deptname);
-                bool status=admi.RemoveTeacher(tea);
-                if(status){
-                    QMessageBox::information(this,tr("提示"),tr("删除老师信息成功！"),QMessageBox::Ok);
-                    on_teachersearchbutton_click();
-                    break;
-                }
-                else{
-                    QMessageBox::information(this,tr("提示"),tr("删除老师信息失败"),QMessageBox::Ok);
-                    break;
-                }
-        }
-          case QMessageBox::No:
+        case QMessageBox::Yes: {
+            temp=ui->teacher_table->item(row,0);
+            ID = temp->text().toInt();
+            temp=ui->teacher_table->item(row,1);
+            name = temp->text().toStdString();
+            temp=ui->teacher_table->item(row, 2);
+            deptname = temp->text().toStdString();
+            UTeacher tea(ID,"******",name,deptname);
+            bool status=admi.RemoveTeacher(tea);
+            if(status) {
+                QMessageBox::information(this,tr("提示"),tr("删除老师信息成功！"),QMessageBox::Ok);
+                on_teachersearchbutton_click();
                 break;
-          default:
-              // should never be reached
-              break;
+            }
+            else{
+                QMessageBox::information(this,tr("提示"),tr("删除老师信息失败"),QMessageBox::Ok);
+                break;
+            }
+        }
+        case QMessageBox::No:
+            break;
+        default:
+            // should never be reached
+            break;
         }
     }
 }
@@ -304,7 +304,7 @@ void manager::on_admaddbutton_click(){
     deptname=ui->man_dept->text().toStdString();
     Administrator adm(ID,"******",name,deptname);
     bool status=admi.AddAdministartor(adm);
-    if(status){
+    if(status) {
         QMessageBox::information(this,tr("提示"),tr("增加管理员成功！"),QMessageBox::Ok);
     }
     else{
@@ -320,7 +320,7 @@ void manager::on_admsearchbutton_click(){
     ui->mana_table->setRowCount(row);
     /*********下面是示意如何处理梓敏返回的字符串*******/
     int i, j;
-    for(i=0;i<row;i++){
+    for(i=0; i<row; i++) {
         j=0;
         ui->mana_table->setItem(i,0,new QTableWidgetItem(admi.Aresult[i*row+(j++)]));
         ui->mana_table->item(i,0)->setFlags(Qt::NoItemFlags);
@@ -345,70 +345,70 @@ void manager::on_admwidget_click(int row, int col)
     QTableWidgetItem* temp;
     int ID;
     string name,deptname;
-    if(col==3){
+    if(col==3) {
         QMessageBox msgBox;
         msgBox.setText("您确定更新管理员信息吗");
         msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
         msgBox.setDefaultButton(QMessageBox::No);
         int ret=msgBox.exec();
         switch (ret) {
-          case QMessageBox::Yes:{
-                temp=ui->mana_table->item(row,0);
-                ID = temp->text().toInt();
-                temp=ui->mana_table->item(row,1);
-                name = temp->text().toStdString();
-                temp=ui->mana_table->item(row,2);
-                deptname = temp->text().toStdString();
-                Administrator adm(ID,"******",name,deptname);
-                bool status=admi.UpdateAdministrator(adm);
-                if(status){
-                    QMessageBox::information(this,tr("提示"),tr("更新管理员信息成功！"),QMessageBox::Ok);
-                    on_admsearchbutton_click();
-                    break;
-                }
-                else{
-                    QMessageBox::information(this,tr("提示"),tr("更新管理员信息失败"),QMessageBox::Ok);
-                    break;
-                }
-        }
-          case QMessageBox::No:
+        case QMessageBox::Yes: {
+            temp=ui->mana_table->item(row,0);
+            ID = temp->text().toInt();
+            temp=ui->mana_table->item(row,1);
+            name = temp->text().toStdString();
+            temp=ui->mana_table->item(row,2);
+            deptname = temp->text().toStdString();
+            Administrator adm(ID,"******",name,deptname);
+            bool status=admi.UpdateAdministrator(adm);
+            if(status) {
+                QMessageBox::information(this,tr("提示"),tr("更新管理员信息成功！"),QMessageBox::Ok);
+                on_admsearchbutton_click();
                 break;
-          default:
-              // should never be reached
-              break;
+            }
+            else{
+                QMessageBox::information(this,tr("提示"),tr("更新管理员信息失败"),QMessageBox::Ok);
+                break;
+            }
+        }
+        case QMessageBox::No:
+            break;
+        default:
+            // should never be reached
+            break;
         }
     }
-    else if(col==4){
+    else if(col==4) {
         QMessageBox msgBox;
         msgBox.setText("您确定删除管理员信息吗");
         msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
         msgBox.setDefaultButton(QMessageBox::No);
         int ret=msgBox.exec();
         switch (ret) {
-          case QMessageBox::Yes:{
-                temp=ui->teacher_table->item(row,0);
-                ID = temp->text().toInt();
-                temp=ui->teacher_table->item(row,1);
-                name = temp->text().toStdString();
-                temp=ui->teacher_table->item(row,4);
-                deptname = temp->text().toStdString();
-                Administrator adm(ID,"******",name,deptname);
-                bool status=admi.RemoveAdministartor(adm);
-                if(status){
-                    QMessageBox::information(this,tr("提示"),tr("删除管理员信息成功！"),QMessageBox::Ok);
-                    on_admsearchbutton_click();
-                    break;
-                }
-                else{
-                    QMessageBox::information(this,tr("提示"),tr("删除管理员信息失败"),QMessageBox::Ok);
-                    break;
-                }
-        }
-          case QMessageBox::No:
+        case QMessageBox::Yes: {
+            temp=ui->teacher_table->item(row,0);
+            ID = temp->text().toInt();
+            temp=ui->teacher_table->item(row,1);
+            name = temp->text().toStdString();
+            temp=ui->teacher_table->item(row,4);
+            deptname = temp->text().toStdString();
+            Administrator adm(ID,"******",name,deptname);
+            bool status=admi.RemoveAdministartor(adm);
+            if(status) {
+                QMessageBox::information(this,tr("提示"),tr("删除管理员信息成功！"),QMessageBox::Ok);
+                on_admsearchbutton_click();
                 break;
-          default:
-              // should never be reached
-              break;
+            }
+            else{
+                QMessageBox::information(this,tr("提示"),tr("删除管理员信息失败"),QMessageBox::Ok);
+                break;
+            }
+        }
+        case QMessageBox::No:
+            break;
+        default:
+            // should never be reached
+            break;
         }
     }
 }
@@ -423,7 +423,7 @@ void manager::on_courseaddbutton_click(){
     credits=ui->course_credits->text().toDouble();
     Course cou(ID,title,deptname,credits);
     bool status=admi.AddCourse(cou);
-    if(status){
+    if(status) {
         QMessageBox::information(this,tr("提示"),tr("增加课程成功！"),QMessageBox::Ok);
     }
     else{
@@ -439,7 +439,7 @@ void manager::on_coursesearchbutton_click(){
     ui->course_table->setRowCount(row);
     /*********下面是示意如何处理梓敏返回的字符串*******/
     int i, j;
-    for(i=0;i<row;i++){
+    for(i=0; i<row; i++) {
         j=0;
         ui->course_table->setItem(i,0,new QTableWidgetItem(admi.Aresult[i*row+(j++)]));
         ui->course_table->item(i,0)->setFlags(Qt::NoItemFlags);
@@ -466,71 +466,71 @@ void manager::on_coursewidget_click(int row, int col)
     int ID;
     string title,deptname;
     double credits;
-    if(col==4){
+    if(col==4) {
         QMessageBox msgBox;
         msgBox.setText("您确定更新课程信息吗");
         msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
         msgBox.setDefaultButton(QMessageBox::No);
         int ret=msgBox.exec();
         switch (ret) {
-          case QMessageBox::Yes:{
-                temp=ui->course_table->item(row,0);
-                ID = temp->text().toInt();
-                temp=ui->course_table->item(row,1);
-                title = temp->text().toStdString();
-                temp=ui->course_table->item(row,2);
-                deptname = temp->text().toStdString();
-                temp=ui->course_table->item(row,3);
-                credits = temp->text().toDouble();
-                Course cou(ID,title,deptname,credits);
-                bool status=admi.UpdateCourse(cou);
-                if(status){
-                    QMessageBox::information(this,tr("提示"),tr("更新课程信息成功！"),QMessageBox::Ok);
-                    on_coursesearchbutton_click();
-                    break;
-                }
-                else{
-                    QMessageBox::information(this,tr("提示"),tr("更新课程信息失败"),QMessageBox::Ok);
-                    break;
-                }
-        }
-          case QMessageBox::No:
+        case QMessageBox::Yes: {
+            temp=ui->course_table->item(row,0);
+            ID = temp->text().toInt();
+            temp=ui->course_table->item(row,1);
+            title = temp->text().toStdString();
+            temp=ui->course_table->item(row,2);
+            deptname = temp->text().toStdString();
+            temp=ui->course_table->item(row,3);
+            credits = temp->text().toDouble();
+            Course cou(ID,title,deptname,credits);
+            bool status=admi.UpdateCourse(cou);
+            if(status) {
+                QMessageBox::information(this,tr("提示"),tr("更新课程信息成功！"),QMessageBox::Ok);
+                on_coursesearchbutton_click();
                 break;
-          default:
-              // should never be reached
-              break;
+            }
+            else{
+                QMessageBox::information(this,tr("提示"),tr("更新课程信息失败"),QMessageBox::Ok);
+                break;
+            }
+        }
+        case QMessageBox::No:
+            break;
+        default:
+            // should never be reached
+            break;
         }
     }
-    else if(col==5){
+    else if(col==5) {
         QMessageBox msgBox;
         msgBox.setText("您确定删除课程信息吗");
         msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
         msgBox.setDefaultButton(QMessageBox::No);
         int ret=msgBox.exec();
         switch (ret) {
-          case QMessageBox::Yes:{
-                temp=ui->course_table->item(row,0);
-                ID = temp->text().toInt();
-                temp=ui->course_table->item(row,1);
-                title = temp->text().toStdString();
-                temp=ui->course_table->item(row,2);
-                deptname = temp->text().toStdString();
-                temp=ui->course_table->item(row,3);
-                credits = temp->text().toDouble();
-                Course cou(ID,title,deptname,credits);
-                bool status=admi.RemoveCourse(cou);
-                if(status){
-                    QMessageBox::information(this,tr("提示"),tr("删除课程信息成功！"),QMessageBox::Ok);
-                    on_coursesearchbutton_click();
-                    break;
-                }
-                else{
-                    QMessageBox::information(this,tr("提示"),tr("删除课程信息失败"),QMessageBox::Ok);
-                    break;
-                }
-           }
+        case QMessageBox::Yes: {
+            temp=ui->course_table->item(row,0);
+            ID = temp->text().toInt();
+            temp=ui->course_table->item(row,1);
+            title = temp->text().toStdString();
+            temp=ui->course_table->item(row,2);
+            deptname = temp->text().toStdString();
+            temp=ui->course_table->item(row,3);
+            credits = temp->text().toDouble();
+            Course cou(ID,title,deptname,credits);
+            bool status=admi.RemoveCourse(cou);
+            if(status) {
+                QMessageBox::information(this,tr("提示"),tr("删除课程信息成功！"),QMessageBox::Ok);
+                on_coursesearchbutton_click();
+                break;
+            }
+            else{
+                QMessageBox::information(this,tr("提示"),tr("删除课程信息失败"),QMessageBox::Ok);
+                break;
+            }
+        }
         case QMessageBox::No:
-              break;
+            break;
         default:
             // should never be reached
             break;
@@ -551,7 +551,7 @@ void manager::on_sectionaddbutton_click(){
     building=ui->sec_building->text().toStdString();
     Section sec(courseID,secID,semester,year,capacity,building,roomno,timeslotid);
     bool status=admi.AddSection(sec);
-    if(status){
+    if(status) {
         QMessageBox::information(this,tr("提示"),tr("增加教学班成功！"),QMessageBox::Ok);
     }
     else{
@@ -568,7 +568,7 @@ void manager::on_sectionsearchbutton_click(){
     ui->sec_table->setRowCount(row);
     /*********下面是示意如何处理梓敏返回的字符串*******/
     int i, j;
-    for(i=0;i<row;i++){
+    for(i=0; i<row; i++) {
         j=0;
         ui->sec_table->setItem(i,0,new QTableWidgetItem(admi.Aresult[i*row+(j++)]));
         ui->sec_table->item(i,0)->setFlags(Qt::NoItemFlags);
@@ -599,94 +599,94 @@ void manager::on_sectionwidget_click(int row, int col)
     QTableWidgetItem* temp;
     int courseID,secID,year,capacity,roomno,timeslotid;
     string semester,building;
-    if(col==9){
+    if(col==9) {
         QMessageBox msgBox;
         msgBox.setText("您确定更新教学班信息吗");
         msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
         msgBox.setDefaultButton(QMessageBox::No);
         int ret=msgBox.exec();
         switch (ret) {
-          case QMessageBox::Yes:{
-                temp=ui->sec_table->item(row,0);
-                courseID = temp->text().toInt();
-                temp=ui->sec_table->item(row,1);
-                secID = temp->text().toInt();
-                temp=ui->sec_table->item(row,2);
-                semester=temp->text().toStdString();
-                temp=ui->sec_table->item(row,3);
-                year = temp->text().toInt();
-                temp=ui->sec_table->item(row,4);
-                capacity = temp->text().toInt();
-                temp=ui->sec_table->item(row,5);
-                //vacancy = temp->text().toInt();
-                temp=ui->sec_table->item(row,6);
-                building=temp->text().toStdString();
-                temp=ui->sec_table->item(row,7);
-                roomno = temp->text().toInt();
-                temp=ui->sec_table->item(row,8);
-                timeslotid = temp->text().toInt();
-                Section sec(courseID,secID,semester,year,capacity,building,roomno,timeslotid);
-                bool status=admi.UpdateSection(sec);
-                if(status){
-                    QMessageBox::information(this,tr("提示"),tr("更新教学班信息成功！"),QMessageBox::Ok);
-                    on_sectionsearchbutton_click();
-                    break;
-                }
-                else{
-                    QMessageBox::information(this,tr("提示"),tr("更新教学班信息失败"),QMessageBox::Ok);
-                    break;
-                }
-        }
-          case QMessageBox::No:
+        case QMessageBox::Yes: {
+            temp=ui->sec_table->item(row,0);
+            courseID = temp->text().toInt();
+            temp=ui->sec_table->item(row,1);
+            secID = temp->text().toInt();
+            temp=ui->sec_table->item(row,2);
+            semester=temp->text().toStdString();
+            temp=ui->sec_table->item(row,3);
+            year = temp->text().toInt();
+            temp=ui->sec_table->item(row,4);
+            capacity = temp->text().toInt();
+            temp=ui->sec_table->item(row,5);
+            //vacancy = temp->text().toInt();
+            temp=ui->sec_table->item(row,6);
+            building=temp->text().toStdString();
+            temp=ui->sec_table->item(row,7);
+            roomno = temp->text().toInt();
+            temp=ui->sec_table->item(row,8);
+            timeslotid = temp->text().toInt();
+            Section sec(courseID,secID,semester,year,capacity,building,roomno,timeslotid);
+            bool status=admi.UpdateSection(sec);
+            if(status) {
+                QMessageBox::information(this,tr("提示"),tr("更新教学班信息成功！"),QMessageBox::Ok);
+                on_sectionsearchbutton_click();
                 break;
-          default:
-              // should never be reached
-              break;
+            }
+            else{
+                QMessageBox::information(this,tr("提示"),tr("更新教学班信息失败"),QMessageBox::Ok);
+                break;
+            }
+        }
+        case QMessageBox::No:
+            break;
+        default:
+            // should never be reached
+            break;
         }
     }
-    else if(col==10){
+    else if(col==10) {
         QMessageBox msgBox;
         msgBox.setText("您确定删除教学班信息吗");
         msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
         msgBox.setDefaultButton(QMessageBox::No);
         int ret=msgBox.exec();
         switch (ret) {
-          case QMessageBox::Yes:{
-                temp=ui->sec_table->item(row,0);
-                courseID = temp->text().toInt();
-                temp=ui->sec_table->item(row,1);
-                secID = temp->text().toInt();
-                temp=ui->sec_table->item(row,2);
-                semester=temp->text().toStdString();
-                temp=ui->sec_table->item(row,3);
-                year = temp->text().toInt();
-                temp=ui->sec_table->item(row,4);
-                capacity = temp->text().toInt();
-                temp=ui->sec_table->item(row,5);
-                //vacancy = temp->text().toInt();
-                temp=ui->sec_table->item(row,6);
-                building=temp->text().toStdString();
-                temp=ui->sec_table->item(row,7);
-                roomno = temp->text().toInt();
-                temp=ui->sec_table->item(row,8);
-                timeslotid = temp->text().toInt();
-                Section sec(courseID,secID,semester,year,capacity,building,roomno,timeslotid);
-                bool status=admi.RemoveSection(sec);
-                if(status){
-                    QMessageBox::information(this,tr("提示"),tr("删除教学班信息成功！"),QMessageBox::Ok);
-                    on_studentsearchbutton_click();
-                    break;
-                }
-                else{
-                    QMessageBox::information(this,tr("提示"),tr("删除教学班信息失败"),QMessageBox::Ok);
-                    break;
-                }
-        }
-          case QMessageBox::No:
+        case QMessageBox::Yes: {
+            temp=ui->sec_table->item(row,0);
+            courseID = temp->text().toInt();
+            temp=ui->sec_table->item(row,1);
+            secID = temp->text().toInt();
+            temp=ui->sec_table->item(row,2);
+            semester=temp->text().toStdString();
+            temp=ui->sec_table->item(row,3);
+            year = temp->text().toInt();
+            temp=ui->sec_table->item(row,4);
+            capacity = temp->text().toInt();
+            temp=ui->sec_table->item(row,5);
+            //vacancy = temp->text().toInt();
+            temp=ui->sec_table->item(row,6);
+            building=temp->text().toStdString();
+            temp=ui->sec_table->item(row,7);
+            roomno = temp->text().toInt();
+            temp=ui->sec_table->item(row,8);
+            timeslotid = temp->text().toInt();
+            Section sec(courseID,secID,semester,year,capacity,building,roomno,timeslotid);
+            bool status=admi.RemoveSection(sec);
+            if(status) {
+                QMessageBox::information(this,tr("提示"),tr("删除教学班信息成功！"),QMessageBox::Ok);
+                on_studentsearchbutton_click();
                 break;
-          default:
-              // should never be reached
-              break;
+            }
+            else{
+                QMessageBox::information(this,tr("提示"),tr("删除教学班信息失败"),QMessageBox::Ok);
+                break;
+            }
+        }
+        case QMessageBox::No:
+            break;
+        default:
+            // should never be reached
+            break;
         }
     }
 }

@@ -2,9 +2,9 @@
 #include "ui_logindialog.h"
 #include <QPainter>
 #include "QDebug"
-#include"student.h"
-#include"teacher.h"
-#include"manager.h"
+#include "student.h"
+#include "teacher.h"
+#include "manager.h"
 #include <QCryptographicHash>
 
 extern student *Student;
@@ -39,38 +39,38 @@ void LoginDialog::on_checkinbutton_click(){
     QByteArray hashedValue;
     hashedValue = QCryptographicHash::hash(key.toUtf8(), QCryptographicHash::Md5);
     string password = hashedValue.toHex().toStdString();
-    if(ui->studentratdio->isChecked()){
+    if(ui->studentratdio->isChecked()) {
         Student = new student(0, ID, password);
         // @ST set ID and password in constructor
         /*
-        Student->stud.SetID(ID);
-        Student->stud.SetPassword(password.c_str());
-        */
+           Student->stud.SetID(ID);
+           Student->stud.SetPassword(password.c_str());
+         */
         // @ST don't forget to SetType
         Student->stud.SetType("student");
-        if(Student->stud.Login()){
-          QDialog::accept();
+        if(Student->stud.Login()) {
+            QDialog::accept();
         }
     }
-    else if(ui->teacherradio->isChecked()){
+    else if(ui->teacherradio->isChecked()) {
         Teacher = new teacher(0, ID, password);
         /* @ST
-        Teacher->teac.SetID(ID);
-        Teacher->teac.SetPassword(password.c_str());
-        */
+           Teacher->teac.SetID(ID);
+           Teacher->teac.SetPassword(password.c_str());
+         */
         Teacher->teac.SetType("teacher");
-        if(Teacher->teac.Login()){
-          QDialog::done(2);
+        if(Teacher->teac.Login()) {
+            QDialog::done(2);
         }
     }
-    else if(ui->managerradio->isChecked()){
+    else if(ui->managerradio->isChecked()) {
         Manager = new manager(0, ID, password);
         Manager->admi.SetType("administrator");
         /* @ST
-        Manager->admi.SetID(ID);
-        Manager->admi.SetPassword(password.c_str());
-        */
-        if(Manager->admi.Login()){
+           Manager->admi.SetID(ID);
+           Manager->admi.SetPassword(password.c_str());
+         */
+        if(Manager->admi.Login()) {
             QDialog::done(3);
         }
     }
