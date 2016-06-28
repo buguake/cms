@@ -38,20 +38,24 @@ void LoginDialog::on_checkinbutton_click(){
     string password=key.toStdString();
     if(ui->studentratdio->isChecked()){
         Student = new student(0, ID, password);
+        // @ST set ID and password in constructor
         /*
         Student->stud.SetID(ID);
         Student->stud.SetPassword(password.c_str());
         */
-        // @ST
+        // @ST don't forget to SetType
         Student->stud.SetType("student");
         if(Student->stud.Login()){
           QDialog::accept();
         }
     }
     else if(ui->teacherradio->isChecked()){
-        Teacher = new teacher;
+        Teacher = new teacher(0, ID, password);
+        /* @ST
         Teacher->teac.SetID(ID);
         Teacher->teac.SetPassword(password.c_str());
+        */
+        Teacher->teac.SetType("teacher");
         if(Teacher->teac.Login()){
           QDialog::done(2);
         }

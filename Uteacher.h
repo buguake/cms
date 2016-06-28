@@ -8,7 +8,7 @@ class UTeacher: public User
 public:
     vector <QString> Tresult;
     UTeacher(void);  //constructors
-    UTeacher(const int ID, const string &password, const string &name, const string &deptname);
+    UTeacher(const int ID, const string &password, const string &name = "", const string &deptname = "");
     virtual ~UTeacher(){}    //destructors
 
     int ViewMyCourses();  // show courses that the Teacher teaches

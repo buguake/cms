@@ -77,13 +77,15 @@ int UTeacher::ViewMyNewStudent(const Section &s)
     str += QString::number(s.GetCourseID());
     str += " and secID = ";
     str += QString::number(s.GetSecID());
+    /* @ST I would like to show all courses in 2016
     str += " and year = 2016 and semester = 'Fall' union ";
     str += "select * from Takes where courseID = ";
     str += QString::number(s.GetCourseID());
     str += " and secID = ";
     str += QString::number(s.GetSecID());
     str += " and year = 2016 and semester = 'Winter'";
-
+    */
+    str += " and year = 2016";
     if(!query.exec(str)){
         return 0;
     }
@@ -131,7 +133,10 @@ int UTeacher::ViewMyOldStudent(const Section &s)  //show students who takes the 
     str += QString::number(s.GetCourseID());
     str += " and secID = ";
     str += QString::number(s.GetSecID());
+    /* @ST students in 2016 can be marked
     str += " and year = 2016 and semester = 'Summer'";
+    */
+    str += " and year = 2016";
 
     if(!query.exec(str)){
         return 0;
@@ -165,8 +170,9 @@ bool UTeacher::Marks(int ID, const Section &s, double grade)
     str += QString::number(s.GetCourseID());
     str += " and secID = ";
     str += QString::number(s.GetSecID());
+    /* @ST here, it should be available if the we take the course in 2016
     str += " and year = 2016 and semester = 'Summer'";
-
+    */
     QSqlQuery query;
     if(!query.exec(str)){
         return false;
@@ -174,7 +180,3 @@ bool UTeacher::Marks(int ID, const Section &s, double grade)
     else
         return true;
 }
-
-
-
-

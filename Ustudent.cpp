@@ -172,7 +172,7 @@ bool UStudent::Drops(const Section &s) const
 int UStudent::SearchSection(const int courseID)
 {
     QString title, credits;
-    int RecordNum;
+    int RecordNum = 0;
 
     /*select from course table*/
 
@@ -193,9 +193,12 @@ int UStudent::SearchSection(const int courseID)
 
     str = "select * from Section where courseID = ";
     str += QString::number(courseID);
+    /* @ST I just want to select all courses available in 2016
     str += " and year = 2016 and semester = 'Fall' union select * from Section where courseID = ";
     str += QString::number(courseID);
     str += " and year = 2016 and semester = 'Winter'";
+    */
+    str += " and year = 2016";
 
     if(!query.exec(str)){  //if the query fails
         return 0;

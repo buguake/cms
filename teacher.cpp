@@ -10,8 +10,8 @@
 #include"section.h"
 
 int a = 0;
-teacher::teacher(QWidget *parent) :
-    QMainWindow(parent),
+teacher::teacher(QWidget *parent, int ID, const string &password) :
+    QMainWindow(parent), teac(ID, password),
     ui(new Ui::teacher)
 {
 
@@ -29,22 +29,22 @@ teacher::teacher(QWidget *parent) :
     ui->tableWidget->setHorizontalHeaderLabels(QStringList() << "课程号" <<"课程名"<<"开课院系"<< "学分" << "开课号"<< "学季"<<"学年");
     for(i=0;i<row;i++){
         j=0;
-        ui->tableWidget->setItem(i,0,new QTableWidgetItem(teac.Tresult[i*row+(j++)]));
+        ui->tableWidget->setItem(i,0,new QTableWidgetItem(teac.Tresult[i * column + (j++)]));
         ui->tableWidget->item(i,0)->setFlags(Qt::NoItemFlags);
-        ui->tableWidget->setItem(i,1,new QTableWidgetItem(teac.Tresult[i*row+(j++)]));
+        ui->tableWidget->setItem(i,1,new QTableWidgetItem(teac.Tresult[i * column + (j++)]));
         ui->tableWidget->item(i,1)->setFlags(Qt::NoItemFlags);
-        ui->tableWidget->setItem(i,2,new QTableWidgetItem(teac.Tresult[i*row+(j++)]));
+        ui->tableWidget->setItem(i,2,new QTableWidgetItem(teac.Tresult[i * column + (j++)]));
         ui->tableWidget->item(i,2)->setFlags(Qt::NoItemFlags);
-        ui->tableWidget->setItem(i,3,new QTableWidgetItem(teac.Tresult[i*row+(j++)]));
+        ui->tableWidget->setItem(i,3,new QTableWidgetItem(teac.Tresult[i * column + (j++)]));
         ui->tableWidget->item(i,3)->setFlags(Qt::NoItemFlags);
-        ui->tableWidget->setItem(i,4,new QTableWidgetItem(teac.Tresult[i*row+(j++)]));
+        ui->tableWidget->setItem(i,4,new QTableWidgetItem(teac.Tresult[i * column + (j++)]));
         ui->tableWidget->item(i,4)->setFlags(Qt::NoItemFlags);
-        ui->tableWidget->setItem(i,5,new QTableWidgetItem(teac.Tresult[i*row+(j++)]));
+        ui->tableWidget->setItem(i,5,new QTableWidgetItem(teac.Tresult[i * column + (j++)]));
         ui->tableWidget->item(i,5)->setFlags(Qt::NoItemFlags);
-        ui->tableWidget->setItem(i,6,new QTableWidgetItem(teac.Tresult[i*row+(j++)]));
+        ui->tableWidget->setItem(i,6,new QTableWidgetItem(teac.Tresult[i * column + (j++)]));
         ui->tableWidget->item(i,6)->setFlags(Qt::NoItemFlags);
     }
-
+    teac.Tresult.clear();
     /*********查选课情况**********/
 
     ui->tableWidget_3->setColumnCount(8);
@@ -76,9 +76,10 @@ void teacher::on_markcoursewidget_click(int row, int col)
           case QMessageBox::Yes:{
                 temp=ui->tableWidget_2->item(row,0);
                 ID = temp->text().toInt();
+                qDebug() << "ID: " << ID;
                 temp=ui->tableWidget_2->item(row,1);
                 courseid = temp->text().toInt();
-                qDebug()<<courseid;
+                qDebug() << "courseid: " << courseid;
                 temp=ui->tableWidget_2->item(row,4);
                 secid = temp->text().toInt();
                 qDebug()<<secid;
@@ -90,7 +91,7 @@ void teacher::on_markcoursewidget_click(int row, int col)
                 qDebug()<<year;
                 temp=ui->tableWidget_2->item(row,7);
                 grade = temp->text().toDouble();
-                qDebug()<<year;
+                qDebug() << grade;
                 Section sec(courseid,secid,semester,year);
                 bool status=teac.Marks(ID,sec,grade);
                 if(status){
@@ -120,25 +121,37 @@ void teacher::on_searchbuttonmark_click(){
     Section sec(course_id,sec_id);
     row=teac.ViewMyNewStudent(sec);
     //麻烦梓敏写一段，通过key，content查询数据库得到课程信息
-    ui->tableWidget_3->setRowCount(row);
+    // @ST orz, we are in tableWidget_2
+    ui->tableWidget_2->setRowCount(row);
     /*********下面是示意如何处理梓敏返回的字符串*******/
+    int column = 9;
     for(i=0;i<row;i++){
+        for (j = 0; j < column - 1; j++)
+        {
+            ui->tableWidget_2->setItem(i, j, new QTableWidgetItem(teac.Tresult[i * (column - 1) + j]));
+            if (column - 2 != j)
+            {
+                ui->tableWidget_2->item(i, j)->setFlags(Qt::NoItemFlags);
+            }
+        }
+        /*
         j=0;
-        ui->tableWidget_3->setItem(i,0,new QTableWidgetItem(teac.Tresult[i*row+(j++)]));
+        ui->tableWidget_3->setItem(i,0,new QTableWidgetItem(teac.Tresult[i * (column - 1) + (j++)]));
         ui->tableWidget_3->item(i,0)->setFlags(Qt::NoItemFlags);
-        ui->tableWidget_3->setItem(i,1,new QTableWidgetItem(teac.Tresult[i*row+(j++)]));
+        ui->tableWidget_3->setItem(i,1,new QTableWidgetItem(teac.Tresult[i * (column - 1) + (j++)]));
         ui->tableWidget_3->item(i,1)->setFlags(Qt::NoItemFlags);
-        ui->tableWidget_3->setItem(i,2,new QTableWidgetItem(teac.Tresult[i*row+(j++)]));
+        ui->tableWidget_3->setItem(i,2,new QTableWidgetItem(teac.Tresult[i * (column - 1) + (j++)]));
         ui->tableWidget_3->item(i,2)->setFlags(Qt::NoItemFlags);
-        ui->tableWidget_3->setItem(i,3,new QTableWidgetItem(teac.Tresult[i*row+(j++)]));
+        ui->tableWidget_3->setItem(i,3,new QTableWidgetItem(teac.Tresult[i * (column - 1) + (j++)]));
         ui->tableWidget_3->item(i,3)->setFlags(Qt::NoItemFlags);
-        ui->tableWidget_3->setItem(i,4,new QTableWidgetItem(teac.Tresult[i*row+(j++)]));
+        ui->tableWidget_3->setItem(i,4,new QTableWidgetItem(teac.Tresult[i * (column - 1) + (j++)]));
         ui->tableWidget_3->item(i,4)->setFlags(Qt::NoItemFlags);
-        ui->tableWidget_3->setItem(i,5,new QTableWidgetItem(teac.Tresult[i*row+(j++)]));
+        ui->tableWidget_3->setItem(i,5,new QTableWidgetItem(teac.Tresult[i * (column - 1) + (j++)]));
         ui->tableWidget_3->item(i,5)->setFlags(Qt::NoItemFlags);
-        ui->tableWidget_3->setItem(i,6,new QTableWidgetItem(teac.Tresult[i*row+(j++)]));
+        ui->tableWidget_3->setItem(i,6,new QTableWidgetItem(teac.Tresult[i * (column - 1) + (j++)]));
         ui->tableWidget_3->item(i,6)->setFlags(Qt::NoItemFlags);
-        ui->tableWidget_3->setItem(i,7,new QTableWidgetItem(teac.Tresult[i*row+(j++)]));
+        ui->tableWidget_3->setItem(i,7,new QTableWidgetItem(teac.Tresult[i * (column - 1) + (j++)]));
+        */
 
         QTableWidgetItem *check = new QTableWidgetItem();
         check->setCheckState(Qt::Unchecked);
@@ -159,49 +172,58 @@ void teacher::on_searchbuttonselect_click(){
     //麻烦梓敏写一段，通过key，content查询数据库得到课程信息
     ui->tableWidget_3->setRowCount(row);
     /*********下面是示意如何处理梓敏返回的字符串*******/
+    int column = 8;
     for(i=0;i<row;i++){
+        for (j = 0; j < column; j++)
+        {
+            ui->tableWidget_3->setItem(i, j, new QTableWidgetItem(teac.Tresult[i * column + j]));
+            ui->tableWidget_3->item(i, j)->setFlags(Qt::NoItemFlags);
+        }
+        /*
         j=0;
-        ui->tableWidget_3->setItem(i,0,new QTableWidgetItem(teac.Tresult[i*row+(j++)]));
+        ui->tableWidget_3->setItem(i,0,new QTableWidgetItem(teac.Tresult[i * column + (j++)]));
         ui->tableWidget_3->item(i,0)->setFlags(Qt::NoItemFlags);
-        ui->tableWidget_3->setItem(i,1,new QTableWidgetItem(teac.Tresult[i*row+(j++)]));
+        ui->tableWidget_3->setItem(i,1,new QTableWidgetItem(teac.Tresult[i * column + (j++)]));
         ui->tableWidget_3->item(i,1)->setFlags(Qt::NoItemFlags);
-        ui->tableWidget_3->setItem(i,2,new QTableWidgetItem(teac.Tresult[i*row+(j++)]));
+        ui->tableWidget_3->setItem(i,2,new QTableWidgetItem(teac.Tresult[i * column + (j++)]));
         ui->tableWidget_3->item(i,2)->setFlags(Qt::NoItemFlags);
-        ui->tableWidget_3->setItem(i,3,new QTableWidgetItem(teac.Tresult[i*row+(j++)]));
+        ui->tableWidget_3->setItem(i,3,new QTableWidgetItem(teac.Tresult[i * column + (j++)]));
         ui->tableWidget_3->item(i,3)->setFlags(Qt::NoItemFlags);
-        ui->tableWidget_3->setItem(i,4,new QTableWidgetItem(teac.Tresult[i*row+(j++)]));
+        ui->tableWidget_3->setItem(i,4,new QTableWidgetItem(teac.Tresult[i * column + (j++)]));
         ui->tableWidget_3->item(i,4)->setFlags(Qt::NoItemFlags);
-        ui->tableWidget_3->setItem(i,5,new QTableWidgetItem(teac.Tresult[i*row+(j++)]));
+        ui->tableWidget_3->setItem(i,5,new QTableWidgetItem(teac.Tresult[i * column + (j++)]));
         ui->tableWidget_3->item(i,5)->setFlags(Qt::NoItemFlags);
-        ui->tableWidget_3->setItem(i,6,new QTableWidgetItem(teac.Tresult[i*row+(j++)]));
+        ui->tableWidget_3->setItem(i,6,new QTableWidgetItem(teac.Tresult[i * column + (j++)]));
         ui->tableWidget_3->item(i,6)->setFlags(Qt::NoItemFlags);
-        ui->tableWidget_3->setItem(i,7,new QTableWidgetItem(teac.Tresult[i*row+(j++)]));
+        ui->tableWidget_3->setItem(i,7,new QTableWidgetItem(teac.Tresult[i * column + (j++)]));
         ui->tableWidget_3->item(i,7)->setFlags(Qt::NoItemFlags);
+        */
     }
     teac.Tresult.clear();
 }
 
 void teacher::on_refresh_click(){
-    int i,j,row,column=7;
+    // @ST no space after comma, which I could not stand
+    int i, j, row, column=7;
     row=teac.ViewMyCourses();
     ui->tableWidget->setColumnCount(column);
     ui->tableWidget->setRowCount(row);
     ui->tableWidget->setHorizontalHeaderLabels(QStringList() << "课程号" <<"课程名"<<"开课院系"<< "学分" << "开课号"<< "学季"<<"学年");
     for(i=0;i<row;i++){
         j=0;
-        ui->tableWidget->setItem(i,0,new QTableWidgetItem(teac.Tresult[i*row+(j++)]));
+        ui->tableWidget->setItem(i,0,new QTableWidgetItem(teac.Tresult[i * column + (j++)]));
         ui->tableWidget->item(i,0)->setFlags(Qt::NoItemFlags);
-        ui->tableWidget->setItem(i,1,new QTableWidgetItem(teac.Tresult[i*row+(j++)]));
+        ui->tableWidget->setItem(i,1,new QTableWidgetItem(teac.Tresult[i * column + (j++)]));
         ui->tableWidget->item(i,1)->setFlags(Qt::NoItemFlags);
-        ui->tableWidget->setItem(i,2,new QTableWidgetItem(teac.Tresult[i*row+(j++)]));
+        ui->tableWidget->setItem(i,2,new QTableWidgetItem(teac.Tresult[i * column + (j++)]));
         ui->tableWidget->item(i,2)->setFlags(Qt::NoItemFlags);
-        ui->tableWidget->setItem(i,3,new QTableWidgetItem(teac.Tresult[i*row+(j++)]));
+        ui->tableWidget->setItem(i,3,new QTableWidgetItem(teac.Tresult[i * column + (j++)]));
         ui->tableWidget->item(i,3)->setFlags(Qt::NoItemFlags);
-        ui->tableWidget->setItem(i,4,new QTableWidgetItem(teac.Tresult[i*row+(j++)]));
+        ui->tableWidget->setItem(i,4,new QTableWidgetItem(teac.Tresult[i * column + (j++)]));
         ui->tableWidget->item(i,4)->setFlags(Qt::NoItemFlags);
-        ui->tableWidget->setItem(i,5,new QTableWidgetItem(teac.Tresult[i*row+(j++)]));
+        ui->tableWidget->setItem(i,5,new QTableWidgetItem(teac.Tresult[i * column + (j++)]));
         ui->tableWidget->item(i,5)->setFlags(Qt::NoItemFlags);
-        ui->tableWidget->setItem(i,6,new QTableWidgetItem(teac.Tresult[i*row+(j++)]));
+        ui->tableWidget->setItem(i,6,new QTableWidgetItem(teac.Tresult[i * column + (j++)]));
         ui->tableWidget->item(i,6)->setFlags(Qt::NoItemFlags);
     }
     teac.Tresult.clear();
