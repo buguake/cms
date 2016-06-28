@@ -42,7 +42,7 @@ manager::manager(QWidget *parent) :
     ui->course_table->setHorizontalHeaderLabels(QStringList()<<"课程号"<<"课程名"<<"开课院系"<<"学分"<<"是否更新"<<"是否删除");
 
     ui->sec_table->setColumnCount(11);
-    ui->sec_table->setHorizontalHeaderLabels(QStringList()<<"课程号"<<"教学班号"<<"学期"<<"学年"<<"容量"<<"余量"<<"教学楼"<<"房间号"<<"教学时间";
+    ui->sec_table->setHorizontalHeaderLabels(QStringList()<<"课程号"<<"教学班号"<<"学期"<<"学年"<<"容量"<<"余量"<<"教学楼"<<"房间号"<<"教学时间");
 }
 
 manager::~manager()
@@ -58,7 +58,7 @@ void manager::on_studentaddbutton_click(){
     birthday=ui->student_birthday->text().toStdString();
     gender=ui->student_gender->text().toStdString();
     deptname=ui->student_dept->text().toStdString();
-    Ustudent stu(ID,"******",name,deptname,birthday,gender);
+    UStudent stu(ID,"******",name,deptname,birthday,gender);
     bool status=admi.AddStudent(stu);
     if(status){
         QMessageBox::information(this,tr("提示"),tr("增加学生成功！"),QMessageBox::Ok);
@@ -75,6 +75,7 @@ void manager::on_studentsearchbutton_click(){
     row=admi.FindStudent(ID);
     ui->student_table->setRowCount(row);
     /*********下面是示意如何处理梓敏返回的字符串*******/
+    int i, j;
     for(i=0;i<row;i++){
         j=0;
         ui->student_table->setItem(i,0,new QTableWidgetItem(admi.Aresult[i*row+(j++)]));
@@ -120,7 +121,7 @@ void manager::on_studentwidget_click(int row, int col)
                 gender = temp->text().toStdString();
                 temp=ui->student_table->item(row,4);
                 deptname = temp->text().toStdString();
-                Ustudent stu(ID,"******",name,deptname,birthday,gender);
+                UStudent stu(ID,"******",name,deptname,birthday,gender);
                 bool status=admi.UpdateStudent(stu);
                 if(status){
                     QMessageBox::information(this,tr("提示"),tr("更新学生信息成功！"),QMessageBox::Ok);
@@ -157,7 +158,7 @@ void manager::on_studentwidget_click(int row, int col)
             gender = temp->text().toStdString();
             temp=ui->student_table->item(row,4);
             deptname = temp->text().toStdString();
-            Ustudent stu(ID,"******",name,deptname,birthday,gender);
+            UStudent stu(ID,"******",name,deptname,birthday,gender);
             bool status=admi.RemoveStudent(stu);
             if(status){
                 QMessageBox::information(this,tr("提示"),tr("删除学生信息成功！"),QMessageBox::Ok);
@@ -184,7 +185,7 @@ void manager::on_teacheraddbutton_click(){
     ID=ui->teacher_ID->text().toInt();
     name=ui->teacher_name->text().toStdString();
     deptname=ui->teacher_dept->text().toStdString();
-    Uteacher tea(ID,"******",name,deptname);
+    UTeacher tea(ID,"******",name,deptname);
     bool status=admi.AddTeacher(tea);
     if(status){
         QMessageBox::information(this,tr("提示"),tr("增加老师成功！"),QMessageBox::Ok);
@@ -201,6 +202,7 @@ void manager::on_teachersearchbutton_click(){
     row=admi.FindTeacher(ID);
     ui->teacher_table->setRowCount(row);
     /*********下面是示意如何处理梓敏返回的字符串*******/
+    int i, j;
     for(i=0;i<row;i++){
         j=0;
         ui->teacher_table->setItem(i,0,new QTableWidgetItem(admi.Aresult[i*row+(j++)]));
@@ -240,7 +242,7 @@ void manager::on_teacherwidget_click(int row, int col)
                 name = temp->text().toStdString();
                 temp=ui->teacher_table->item(row,4);
                 deptname = temp->text().toStdString();
-                Uteacher tea(ID,"******",name,deptname);
+                UTeacher tea(ID,"******",name,deptname);
                 bool status=admi.UpdateTeacher(tea);
                 if(status){
                     QMessageBox::information(this,tr("提示"),tr("更新老师信息成功！"),QMessageBox::Ok);
@@ -273,7 +275,7 @@ void manager::on_teacherwidget_click(int row, int col)
                 name = temp->text().toStdString();
                 temp=ui->teacher_table->item(row,4);
                 deptname = temp->text().toStdString();
-                Uteacher tea(ID,"******",name,deptname);
+                UTeacher tea(ID,"******",name,deptname);
                 bool status=admi.RemoveTeacher(tea);
                 if(status){
                     QMessageBox::information(this,tr("提示"),tr("删除老师信息成功！"),QMessageBox::Ok);
@@ -300,7 +302,7 @@ void manager::on_admaddbutton_click(){
     ID=ui->manager_ID->text().toInt();
     name=ui->mana_name->text().toStdString();
     deptname=ui->man_dept->text().toStdString();
-    administrator adm(ID,"******",name,deptname);
+    Administrator adm(ID,"******",name,deptname);
     bool status=admi.AddAdministartor(adm);
     if(status){
         QMessageBox::information(this,tr("提示"),tr("增加管理员成功！"),QMessageBox::Ok);
@@ -317,6 +319,7 @@ void manager::on_admsearchbutton_click(){
     row=admi.FindAdministrator(ID);
     ui->teacher_table->setRowCount(row);
     /*********下面是示意如何处理梓敏返回的字符串*******/
+    int i, j;
     for(i=0;i<row;i++){
         j=0;
         ui->mana_table->setItem(i,0,new QTableWidgetItem(admi.Aresult[i*row+(j++)]));
@@ -356,7 +359,7 @@ void manager::on_admwidget_click(int row, int col)
                 name = temp->text().toStdString();
                 temp=ui->mana_table->item(row,4);
                 deptname = temp->text().toStdString();
-                administrator adm(ID,"******",name,deptname);
+                Administrator adm(ID,"******",name,deptname);
                 bool status=admi.UpdateAdministrator(adm);
                 if(status){
                     QMessageBox::information(this,tr("提示"),tr("更新管理员信息成功！"),QMessageBox::Ok);
@@ -389,7 +392,7 @@ void manager::on_admwidget_click(int row, int col)
                 name = temp->text().toStdString();
                 temp=ui->teacher_table->item(row,4);
                 deptname = temp->text().toStdString();
-                administrator adm(ID,"******",name,deptname);
+                Administrator adm(ID,"******",name,deptname);
                 bool status=admi.RemoveAdministartor(adm);
                 if(status){
                     QMessageBox::information(this,tr("提示"),tr("删除管理员信息成功！"),QMessageBox::Ok);
@@ -418,7 +421,7 @@ void manager::on_courseaddbutton_click(){
     title=ui->course_name->text().toStdString();
     deptname=ui->course_dept->text().toStdString();
     credits=ui->course_credits->text().toDouble();
-    Course cou(ID,tile,deptname,credits);
+    Course cou(ID,title,deptname,credits);
     bool status=admi.AddCourse(cou);
     if(status){
         QMessageBox::information(this,tr("提示"),tr("增加课程成功！"),QMessageBox::Ok);
@@ -435,6 +438,7 @@ void manager::on_coursesearchbutton_click(){
     row=admi.FindCourse(ID);
     ui->course_table->setRowCount(row);
     /*********下面是示意如何处理梓敏返回的字符串*******/
+    int i, j;
     for(i=0;i<row;i++){
         j=0;
         ui->course_table->setItem(i,0,new QTableWidgetItem(admi.Aresult[i*row+(j++)]));
@@ -477,8 +481,8 @@ void manager::on_coursewidget_click(int row, int col)
                 temp=ui->course_table->item(row,2);
                 deptname = temp->text().toStdString();
                 temp=ui->course_table->item(row,3);
-                credits = temp->text().todouble();
-                Course cou(ID,tile,deptname,credits);
+                credits = temp->text().toDouble();
+                Course cou(ID,title,deptname,credits);
                 bool status=admi.UpdateCourse(cou);
                 if(status){
                     QMessageBox::information(this,tr("提示"),tr("更新课程信息成功！"),QMessageBox::Ok);
@@ -512,9 +516,9 @@ void manager::on_coursewidget_click(int row, int col)
                 temp=ui->course_table->item(row,2);
                 deptname = temp->text().toStdString();
                 temp=ui->course_table->item(row,3);
-                credits = temp->text().todouble();
-                Course cou(ID,tile,deptname,credits);
-                bool status=admi.RemoveAdministartor(cou);
+                credits = temp->text().toDouble();
+                Course cou(ID,title,deptname,credits);
+                bool status=admi.RemoveCourse(cou);
                 if(status){
                     QMessageBox::information(this,tr("提示"),tr("删除课程信息成功！"),QMessageBox::Ok);
                     on_coursesearchbutton_click();
@@ -534,7 +538,7 @@ void manager::on_coursewidget_click(int row, int col)
     }
 }
 
-void manager::on_studentaddbutton_click(){
+void manager::on_sectionaddbutton_click(){
     int courseID,secID,year,capacity,roomno,timeslotid;
     string semester,building;
     courseID=ui->sec_courseid->text().toInt();
@@ -555,7 +559,7 @@ void manager::on_studentaddbutton_click(){
     }
 }
 
-void manager::on_studentsearchbutton_click(){
+void manager::on_sectionsearchbutton_click(){
     int courseID,secid,row;
     courseID=ui->sec_courseid_sear->text().toInt();
     secid=ui->sec_secid_ser->text().toInt();
@@ -563,6 +567,7 @@ void manager::on_studentsearchbutton_click(){
     row=admi.FindSection(courseID,secid);
     ui->sec_table->setRowCount(row);
     /*********下面是示意如何处理梓敏返回的字符串*******/
+    int i, j;
     for(i=0;i<row;i++){
         j=0;
         ui->sec_table->setItem(i,0,new QTableWidgetItem(admi.Aresult[i*row+(j++)]));
@@ -589,10 +594,10 @@ void manager::on_studentsearchbutton_click(){
     admi.Aresult.clear();
 }
 
-void manager::on_studentwidget_click(int row, int col)
+void manager::on_sectionwidget_click(int row, int col)
 {
     QTableWidgetItem* temp;
-    int courseID,secID,year,capacity,vacancy,roomno,timeslotid;
+    int courseID,secID,year,capacity,roomno,timeslotid;
     string semester,building;
     if(col==9){
         QMessageBox msgBox;
@@ -613,14 +618,14 @@ void manager::on_studentwidget_click(int row, int col)
                 temp=ui->sec_table->item(row,4);
                 capacity = temp->text().toInt();
                 temp=ui->sec_table->item(row,5);
-                vacancy = temp->text().toInt();
+                //vacancy = temp->text().toInt();
                 temp=ui->sec_table->item(row,6);
                 building=temp->text().toStdString();
                 temp=ui->sec_table->item(row,7);
                 roomno = temp->text().toInt();
                 temp=ui->sec_table->item(row,8);
                 timeslotid = temp->text().toInt();
-                Section sec(courseID,secID,semester,year,capacity,vacancy,building,roomno,timeslotid);
+                Section sec(courseID,secID,semester,year,capacity,building,roomno,timeslotid);
                 bool status=admi.UpdateSection(sec);
                 if(status){
                     QMessageBox::information(this,tr("提示"),tr("更新教学班信息成功！"),QMessageBox::Ok);
@@ -658,14 +663,14 @@ void manager::on_studentwidget_click(int row, int col)
                 temp=ui->sec_table->item(row,4);
                 capacity = temp->text().toInt();
                 temp=ui->sec_table->item(row,5);
-                vacancy = temp->text().toInt();
+                //vacancy = temp->text().toInt();
                 temp=ui->sec_table->item(row,6);
                 building=temp->text().toStdString();
                 temp=ui->sec_table->item(row,7);
                 roomno = temp->text().toInt();
                 temp=ui->sec_table->item(row,8);
                 timeslotid = temp->text().toInt();
-                Section sec(courseID,secID,semester,year,capacity,vacancy,building,roomno,timeslotid);
+                Section sec(courseID,secID,semester,year,capacity,building,roomno,timeslotid);
                 bool status=admi.RemoveSection(sec);
                 if(status){
                     QMessageBox::information(this,tr("提示"),tr("删除教学班信息成功！"),QMessageBox::Ok);

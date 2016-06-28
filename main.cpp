@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
     db.setDatabaseName("cms_master");
     db.setUserName("root");
     db.setPassword("LRrg970328");
-    bool ok = db.open();
+    db.open();
 
     QApplication a(argc, argv);
 

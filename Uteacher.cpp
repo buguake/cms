@@ -1,4 +1,4 @@
-#include "UTeacher.h"
+#include "Uteacher.h"
 //vector <QString> Tresult;
 
 /*construtors for class teacher*/
@@ -10,7 +10,7 @@ UTeacher::UTeacher(const int ID, const string &password, const string &name, con
         :User(ID, password, "teacher", name, deptname){}
 
 // show courses that the teacher teaches
-int UTeacher::ViewMyCourses() const
+int UTeacher::ViewMyCourses()
 {
     /*select from teacher table*/
 
@@ -50,7 +50,7 @@ int UTeacher::ViewMyCourses() const
     }
     return RecordNum;
 }
-int UTeacher::ViewMyNewStudent(const Section &s) const
+int UTeacher::ViewMyNewStudent(const Section &s)
 {
     /*select from teacher table*/
 
@@ -104,7 +104,7 @@ int UTeacher::ViewMyNewStudent(const Section &s) const
     return RecordNum;
 }
 
-int UTeacher::ViewMyOldStudent(const Section &s) const  //show students who takes the courses which this Teacher teaches
+int UTeacher::ViewMyOldStudent(const Section &s)  //show students who takes the courses which this Teacher teaches
 {
     /*select from teacher table*/
 

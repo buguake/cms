@@ -1,4 +1,4 @@
-#include "UStudent.h"
+#include "Ustudent.h"
 //vector <QString> Sresult;
 
 /*constructor for class UStudent*/
@@ -16,7 +16,7 @@ UStudent::UStudent(const int ID, const string &password, const string &name, con
 }
 
 // show courses that the UStudent takes
-int UStudent::ViewMyCourses() const
+int UStudent::ViewMyCourses()
 {
 
     /*select from takes table*/
@@ -169,7 +169,7 @@ bool UStudent::Drops(const Section &s) const
 
 }
 
-int UStudent::SearchSection(const int courseID) const
+int UStudent::SearchSection(const int courseID)
 {
     QString title, credits;
     int RecordNum;
@@ -232,7 +232,7 @@ int UStudent::SearchSection(const int courseID) const
 
 }
 
-int UStudent::SearchSection(const string &title) const
+int UStudent::SearchSection(const string &title)
 {
     QString courseID, credits;
     int RecordNum;

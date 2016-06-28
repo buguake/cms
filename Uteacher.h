@@ -11,9 +11,9 @@ public:
     UTeacher(const int ID, const string &password, const string &name, const string &deptname);
     virtual ~UTeacher(){}    //destructors
 
-    int ViewMyCourses() const;  // show courses that the Teacher teaches
-    int ViewMyNewStudent(const Section &s) const;  //show students who takes the courses which this Teacher teaches
-    int ViewMyOldStudent(const Section &s) const;  //show students who takes the courses which this Teacher teaches
+    int ViewMyCourses();  // show courses that the Teacher teaches
+    int ViewMyNewStudent(const Section &s);  //show students who takes the courses which this Teacher teaches
+    int ViewMyOldStudent(const Section &s);  //show students who takes the courses which this Teacher teaches
     bool Marks(int ID, const Section &s, double grade);
 };
 

@@ -16,27 +16,27 @@ public:
     bool AddStudent(const UStudent &s) const;    //add a student
     bool RemoveStudent(const UStudent &s) const; //delete a student
     bool UpdateStudent(const UStudent &s) const; //update the information of a student
-    int FindStudent(const int ID) const;
+    int FindStudent(const int ID);
 
     bool AddTeacher(const UTeacher &t) const;    //operations about teachers
     bool RemoveTeacher(const UTeacher &t) const;
     bool UpdateTeacher(const UTeacher &t) const;
-    int FindTeacher(const int ID) const;
+    int FindTeacher(const int ID);
 
     bool AddAdministartor(const Administrator &a) const;    //operations about administrators
     bool RemoveAdministartor(const Administrator &a) const;
     bool UpdateAdministrator(const Administrator &a) const;
-    int FindAdministrator(const int ID) const;
+    int FindAdministrator(const int ID);
 
     bool AddCourse(const Course &c) const;  //operations about courses
     bool RemoveCourse(const Course &c) const;
     bool UpdateCourse(const Course &c) const;
-    int FindCourse(const int courseID) const;
+    int FindCourse(const int courseID);
 
     bool AddSection(const Section &s) const;    //opertions about sections
     bool RemoveSection(const Section &s) const;
     bool UpdateSection(const Section &s) const;
-    int FindSection(const int courseID, const int secID) const;
+    int FindSection(const int courseID, const int secID);
 };
 
 #endif // ADMINISTRATOR_H

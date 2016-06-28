@@ -8,7 +8,7 @@
 #include "QMessageBox"
 #include"section.h"
 
-int a = 0;
+//int a = 0;  // what the hell ?
 student::student(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::student)
@@ -90,7 +90,7 @@ void student::on_mycoursewidget_click(int row, int col)
                 qDebug()<<courseid;
                 temp=ui->mycoursewidget->item(row,5);
                 semester = temp->text().toStdString();
-                qDebug()<<semester;
+                qDebug()<<semester.c_str();
                 temp=ui->mycoursewidget->item(row,6);
                 year = temp->text().toInt();
                 qDebug()<<year;
@@ -162,8 +162,8 @@ void student::on_searchbutton_click(){
     QString content;
     int ID;
     string title;
-    book ok;
-    int row,column;
+    bool ok;
+    int row;
     key=ui->comboBox->currentText();
     content=ui->lineEdit->text();
     //麻烦梓敏写一段，通过key，content查询数据库得到课程信息

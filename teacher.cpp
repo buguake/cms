@@ -17,7 +17,7 @@ teacher::teacher(QWidget *parent) :
 
     ui->setupUi(this);
     connect(ui->tableWidget_2,SIGNAL(cellClicked(int,int)),this,SLOT(on_markcoursewidget_click(int,int)));
-    connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(on_searchbuttonmark_click());
+    connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(on_searchbuttonmark_click()));
     connect(ui->pushButton_2, SIGNAL(clicked()), this, SLOT(on_searchbuttonselect_click()));
     connect(ui->pushButton_8, SIGNAL(clicked()), this, SLOT(on_refresh_click()));
 
@@ -84,7 +84,7 @@ void teacher::on_markcoursewidget_click(int row, int col)
                 qDebug()<<secid;
                 temp=ui->tableWidget_2->item(row,5);
                 semester = temp->text().toStdString();
-                qDebug()<<semester;
+                qDebug()<<semester.c_str();
                 temp=ui->tableWidget_2->item(row,6);
                 year = temp->text().toInt();
                 qDebug()<<year;
