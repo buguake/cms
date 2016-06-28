@@ -17,7 +17,7 @@ LoginDialog::LoginDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    connect(ui->checkinbutton, SIGNAL(clicked()), this, SLOT(on_checkinbutton_click()));
+    connect(ui->checkinbutton, &QPushButton::clicked, this, &LoginDialog::on_checkinbutton_click);
 
     QPalette palette;
     palette.setColor(QPalette::WindowText, QColor(2,52,96));
