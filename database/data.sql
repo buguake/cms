@@ -1,40 +1,40 @@
 # Administrator
-INSERT INTO User(ID, type, password) values (0, 'administrator', 'admin'));
+INSERT INTO User(ID, type, password) values (0, 'administrator', MD5('admin'));
 INSERT INTO Administrator(ID, name) values (0, 'admin');
 
 # Teacher
-INSERT INTO User(ID, type) values (1, 'Teacher');
+INSERT INTO User(ID, type) values (1, 'teacher');
 INSERT INTO Teacher(ID, name, deptName) values (1, 'Turing', 'Comp. Sci.');
 
-INSERT INTO User(ID, type) values (2, 'Teacher');
+INSERT INTO User(ID, type) values (2, 'teacher');
 INSERT INTO Teacher(ID, name, deptName) values (2, 'Newton', 'Physics');
 
-INSERT INTO User(ID, type) values (3, 'Teacher');
+INSERT INTO User(ID, type) values (3, 'teacher');
 INSERT INTO Teacher(ID, name, deptName) values (3, 'Tchaikovsky', 'Music');
 
-INSERT INTO User(ID, type) values (4, 'Teacher');
+INSERT INTO User(ID, type) values (4, 'teacher');
 INSERT INTO Teacher(ID, name, deptName) values (4, 'Socrates', 'Philosophy');
 
-INSERT INTO User(ID, type) values (5, 'Teacher');
+INSERT INTO User(ID, type) values (5, 'teacher');
 INSERT INTO Teacher(ID, name, deptName) values (5, 'Guass', 'Math');
 
 # Student
-INSERT INTO User(ID, type) values (123456, 'Student');
+INSERT INTO User(ID, type) values (123456, 'student');
 INSERT INTO Student(ID, name, birthday, gender, deptName) values(123456, 'Stephen Tse', '1996-02-01', 'male', 'Comp. Sci.');
 
-INSERT INTO User(ID, type) values (123457, 'Student');
+INSERT INTO User(ID, type) values (123457, 'student');
 INSERT INTO Student(ID, name, deptName) values(123457, 'Foo Bar', 'Comp. Sci.');
 
-INSERT INTO User(ID, type) values (123458, 'Student');
+INSERT INTO User(ID, type) values (123458, 'student');
 INSERT INTO Student(ID, name, deptName) values(123458, 'Plato', 'Philosophy');
 
-INSERT INTO User(ID, type) values (123459, 'Student');
+INSERT INTO User(ID, type) values (123459, 'student');
 INSERT INTO Student(ID, name, deptName) values(123459, 'Chopin', 'Music');
 
-INSERT INTO User(ID, type) values (123460, 'Student');
+INSERT INTO User(ID, type) values (123460, 'student');
 INSERT INTO Student(ID, name, deptName) values(123460, 'Fermat', 'Math');
 
-INSERT INTO User(ID, type) values (123461, 'Student');
+INSERT INTO User(ID, type) values (123461, 'student');
 INSERT INTO Student(ID, name, deptName) values(123461, 'Einstein', 'Physics');
 
 # Course

@@ -1,5 +1,4 @@
 #include "administrator.h"
-vector <QString> Aresult;
 
 //construtors for administrator
 Administrator::Administrator(void)
@@ -117,13 +116,13 @@ bool Administrator::UpdateStudent(const UStudent &s) const
     return true;
 }
 
-int Administrator::FindStudent(const int ID) const
+int Administrator::FindStudent(const int ID)
 {
     /*select from student table*/
 
     QString str = "select * from Student where ID = ";
     str += QString::number(ID);
-    int RecordNum;
+    int RecordNum = 0;
 
     QSqlQuery query;
     if(!query.exec(str))
@@ -215,13 +214,14 @@ bool Administrator::UpdateTeacher(const UTeacher &t) const
     return true;
 }
 
-int Administrator::FindTeacher(const int ID) const
+int Administrator::FindTeacher(const int ID)
 {
     /*select from teacher table*/
 
     QString str = "select * from Teacher where ID = ";
     str += QString::number(ID);
-    int RecordNum;
+    // @ST damn it, should have benn initialized
+    int RecordNum = 0;
 
     QSqlQuery query;
     if(!query.exec(str))
@@ -314,13 +314,13 @@ bool Administrator::UpdateAdministrator(const Administrator &a) const
     return true;
 }
 
-int Administrator::FindAdministrator(const int ID) const
+int Administrator::FindAdministrator(const int ID)
 {
     /*select from administrator*/
 
     QString str = "select * from Administrator where ID = ";
     str += QString::number(ID);
-    int RecordNum;
+    int RecordNum = 0;
 
     QSqlQuery query;
     if(!query.exec(str))
@@ -414,13 +414,13 @@ bool Administrator::UpdateCourse(const Course &c) const
     return true;
 }
 
-int Administrator::FindCourse(const int courseID) const
+int Administrator::FindCourse(const int courseID)
 {
     /*select from course table*/
 
     QString str = "select * from Course where courseID = ";
     str += QString::number(courseID);
-    int RecordNum;
+    int RecordNum = 0;
 
     QSqlQuery query;
     if(!query.exec(str))
@@ -554,7 +554,7 @@ bool Administrator::UpdateSection(const Section &s) const
     return true;
 }
 
-int Administrator::FindSection(const int courseID, const int secID) const
+int Administrator::FindSection(const int courseID, const int secID)
 {
     /*select from section table*/
 
@@ -562,7 +562,7 @@ int Administrator::FindSection(const int courseID, const int secID) const
     str += QString::number(courseID);
     str += " and secID = ";
     str += QString::number(secID);
-    int RecordNum;
+    int RecordNum = 0;
 
     QSqlQuery query;
     if(!query.exec(str))
@@ -576,4 +576,3 @@ int Administrator::FindSection(const int courseID, const int secID) const
     }
     return RecordNum;
 }
-

@@ -31,13 +31,15 @@ bool User::Login() const
     QString RecordType;
     if(this->type == Ustudent) RecordType = "student";
     else if(this->type == Uteacher) RecordType = "teacher";
-    if(this->type == administrator) RecordType = "administrator";
+    else if(this->type == administrator) RecordType = "administrator";
 
     QString str = "select * from User where ID = ";
+    // @ST @TODO dammmn it, how can password be number???
     str += QString::number(ID);
-    str += " and password = ";
+    // @ST password is a string, it needs quotations
+    str += " and password = \'";
     str += password;
-    str += " and type = '";
+    str += "\' and type = '";
     str += RecordType;
     str += "'";
 
@@ -53,6 +55,3 @@ bool User::Login() const
     }
     return false;
 }
-
-
-

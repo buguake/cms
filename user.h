@@ -20,7 +20,7 @@ class User
 protected:
     int ID;
 private:
-    char password[16];  // 128-bit hashed value
+    char password[33];  // 128-bit hashed value, ascii armored
     UserType type;
     string name;
     string deptName;
@@ -86,9 +86,10 @@ inline void User::SetPassword(const char *password)
 // set user's type, student, teacher or administrator
 inline void User::SetType(const string &type)
 {
+    // @ST damn it, sily mistake
     if(type == "student") this->type = Ustudent;
-    if(type == "teacher") this->type = Uteacher;
-    if(type == "administrator") this->type = administrator;
+    else if(type == "teacher") this->type = Uteacher;
+    else if(type == "administrator") this->type = administrator;
     else this->type = null;
 }
 

@@ -1,4 +1,4 @@
-#include "UStudent.h"
+#include "Ustudent.h"
 //vector <QString> Sresult;
 
 /*constructor for class UStudent*/
@@ -16,12 +16,12 @@ UStudent::UStudent(const int ID, const string &password, const string &name, con
 }
 
 // show courses that the UStudent takes
-int UStudent::ViewMyCourses() const
+int UStudent::ViewMyCourses()
 {
 
     /*select from takes table*/
 
-    int RecordNum;
+    int RecordNum = 0;
 
     QString str = "select * from Takes where ID = ";
     str += QString::number(ID);
@@ -169,10 +169,10 @@ bool UStudent::Drops(const Section &s) const
 
 }
 
-int UStudent::SearchSection(const int courseID) const
+int UStudent::SearchSection(const int courseID)
 {
     QString title, credits;
-    int RecordNum;
+    int RecordNum = 0;
 
     /*select from course table*/
 
@@ -193,9 +193,12 @@ int UStudent::SearchSection(const int courseID) const
 
     str = "select * from Section where courseID = ";
     str += QString::number(courseID);
+    /* @ST I just want to select all courses available in 2016 @TODO
     str += " and year = 2016 and semester = 'Fall' union select * from Section where courseID = ";
     str += QString::number(courseID);
     str += " and year = 2016 and semester = 'Winter'";
+    */
+    str += " and year = 2016";
 
     if(!query.exec(str)){  //if the query fails
         return 0;
@@ -232,10 +235,10 @@ int UStudent::SearchSection(const int courseID) const
 
 }
 
-int UStudent::SearchSection(const string &title) const
+int UStudent::SearchSection(const string &title)
 {
     QString courseID, credits;
-    int RecordNum;
+    int RecordNum = 0;
 
     /*select from course table*/
 

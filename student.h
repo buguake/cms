@@ -14,7 +14,7 @@ class student : public QMainWindow
 
 public:
     UStudent stud;
-    explicit student(QWidget *parent = 0);
+    explicit student(QWidget *parent = 0, int ID = -1, const string &password = "");
     ~student();
 
 private:

@@ -13,7 +13,7 @@ class teacher : public QMainWindow
 
 public:
     UTeacher teac;
-    explicit teacher(QWidget *parent = 0);
+    explicit teacher(QWidget *parent = 0, int ID = 0, const string &password = 0);
     ~teacher();
 
 private:
@@ -26,5 +26,3 @@ private slots:
 };
 
 #endif // TEACHER_H
-
-

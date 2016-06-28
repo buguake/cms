@@ -6,29 +6,45 @@
 #include <QSqlDatabase>
 #include <vector>
 #include <iostream>
-
+#define REMOTE_SERVER
 using namespace std;
 
-//extern vector <QString> Sresult;
-//extern vector <QString> Tresult;
-//extern vector <QString> Aresult;
-
-student Student;
-LoginDialog logindialog;
-teacher Teacher;
-manager Manager;
+student *Student;
+teacher *Teacher;
+manager *Manager;
 
 int main(int argc, char *argv[])
 {
     QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
+<<<<<<< HEAD
+=======
+#ifdef REMOTE_SERVER
+>>>>>>> Crypto
     db.setHostName("xjiajiahao.tk");
     db.setDatabaseName("cms");
     db.setUserName("cms");
     db.setPassword("1897");
+<<<<<<< HEAD
     db.open();
 
+=======
+#else
+    db.setHostName("localhost");
+    db.setDatabaseName("cms");
+    db.setUserName("root");
+    db.setPassword("1897");
+#endif
+    int ok = db.open();
+    if (!ok)
+    {
+        std::cout << "Failed to connect to database, please check your network." << endl;
+        return 1;
+    }
+    cout << "Connectd to database. " << endl;
+>>>>>>> Crypto
     QApplication a(argc, argv);
 
+    LoginDialog logindialog;
     QPalette palette;
     palette.setColor(QPalette::Background, QColor(255,255,255));
     logindialog.setPalette(palette);
@@ -36,13 +52,13 @@ int main(int argc, char *argv[])
     int check=logindialog.exec();
 
     if(check==1){
-        Student.show();
+        Student->show();
     }
     else if(check==2){
-        Teacher.show();
+        Teacher->show();
     }
     else if(check==3){
-        Manager.show();
+        Manager->show();
     }
 
     return a.exec();

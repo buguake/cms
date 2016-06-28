@@ -8,9 +8,9 @@
 #include "QMessageBox"
 #include"section.h"
 
-int a = 0;
-student::student(QWidget *parent) :
-    QMainWindow(parent),
+//int a = 0;  // what the hell ?
+student::student(QWidget *parent, int ID, const string &password) :
+    QMainWindow(parent), stud(ID, password),
     ui(new Ui::student)
 {
 
@@ -25,32 +25,33 @@ student::student(QWidget *parent) :
     ui->mycoursewidget->setColumnCount(column);
     ui->mycoursewidget->setRowCount(row);
     ui->mycoursewidget->setHorizontalHeaderLabels(QStringList() << "课程号" <<"课程名"<<"开课院系"<< "学分" << "开课号"<< "学季"<<"学年"<<"成绩"<<"是否退课");
+
     for(i=0;i<row;i++){
         j=0;
-        ui->mycoursewidget->setItem(i,0,new QTableWidgetItem(stud.Sresult[i*row+(j++)]));
-        /*使（i，0）这个位置的item不能修改（注意，设置为不能修改的这个坐标的item必须存在
-         ，你可以试着把for循环的i<10改为i<20，因为这个表格最多有10行所以会报错）*/
+        ui->mycoursewidget->setItem(i,0,new QTableWidgetItem(stud.Sresult[i * (column - 1) + (j++)]));
+        //使（i，0）这个位置的item不能修改（注意，设置为不能修改的这个坐标的item必须存在
+        // ，你可以试着把for循环的i<10改为i<20，因为这个表格最多有10行所以会报错）
         ui->mycoursewidget->item(i,0)->setFlags(Qt::NoItemFlags);
-        ui->mycoursewidget->setItem(i,1,new QTableWidgetItem(stud.Sresult[i*row+(j++)]));
+        ui->mycoursewidget->setItem(i,1,new QTableWidgetItem(stud.Sresult[i * (column - 1) + (j++)]));
         ui->mycoursewidget->item(i,1)->setFlags(Qt::NoItemFlags);
-        ui->mycoursewidget->setItem(i,2,new QTableWidgetItem(stud.Sresult[i*row+(j++)]));
+        ui->mycoursewidget->setItem(i,2,new QTableWidgetItem(stud.Sresult[i * (column - 1) + (j++)]));
         ui->mycoursewidget->item(i,2)->setFlags(Qt::NoItemFlags);
-        ui->mycoursewidget->setItem(i,3,new QTableWidgetItem(stud.Sresult[i*row+(j++)]));
+        ui->mycoursewidget->setItem(i,3,new QTableWidgetItem(stud.Sresult[i * (column - 1) + (j++)]));
         ui->mycoursewidget->item(i,3)->setFlags(Qt::NoItemFlags);
-        ui->mycoursewidget->setItem(i,4,new QTableWidgetItem(stud.Sresult[i*row+(j++)]));
+        ui->mycoursewidget->setItem(i,4,new QTableWidgetItem(stud.Sresult[i * (column - 1) + (j++)]));
         ui->mycoursewidget->item(i,4)->setFlags(Qt::NoItemFlags);
-        ui->mycoursewidget->setItem(i,5,new QTableWidgetItem(stud.Sresult[i*row+(j++)]));
+        ui->mycoursewidget->setItem(i,5,new QTableWidgetItem(stud.Sresult[i * (column - 1) + (j++)]));
         ui->mycoursewidget->item(i,5)->setFlags(Qt::NoItemFlags);
-        ui->mycoursewidget->setItem(i,6,new QTableWidgetItem(stud.Sresult[i*row+(j++)]));
+        ui->mycoursewidget->setItem(i,6,new QTableWidgetItem(stud.Sresult[i * (column - 1) + (j++)]));
         ui->mycoursewidget->item(i,6)->setFlags(Qt::NoItemFlags);
-        ui->mycoursewidget->setItem(i,7,new QTableWidgetItem(stud.Sresult[i*row+(j++)]));
+        ui->mycoursewidget->setItem(i,7,new QTableWidgetItem(stud.Sresult[i * (column - 1) + (j++)]));
         ui->mycoursewidget->item(i,7)->setFlags(Qt::NoItemFlags);
         QTableWidgetItem *check = new QTableWidgetItem();
         check->setCheckState(Qt::Unchecked);
         check->setTextAlignment(Qt::AlignCenter);
         ui->mycoursewidget->setItem(i,8,check);
     }
-
+    stud.Sresult.clear();
     /*********网上选课部分**********/
     QStringList key;
     key << "课程号" << "课程名称";
@@ -90,7 +91,7 @@ void student::on_mycoursewidget_click(int row, int col)
                 qDebug()<<courseid;
                 temp=ui->mycoursewidget->item(row,5);
                 semester = temp->text().toStdString();
-                qDebug()<<semester;
+                qDebug()<<semester.c_str();
                 temp=ui->mycoursewidget->item(row,6);
                 year = temp->text().toInt();
                 qDebug()<<year;
@@ -162,8 +163,8 @@ void student::on_searchbutton_click(){
     QString content;
     int ID;
     string title;
-    book ok;
-    int row,column;
+    bool ok;
+    int row;
     key=ui->comboBox->currentText();
     content=ui->lineEdit->text();
     //麻烦梓敏写一段，通过key，content查询数据库得到课程信息
@@ -177,33 +178,34 @@ void student::on_searchbutton_click(){
     }
     ui->selectcoursewidget->setRowCount(row);
     /*********下面是示意如何处理梓敏返回的字符串*******/
+    int column = 14;
     for(i=0;i<row;i++){
         j=0;
-        ui->selectcoursewidget->setItem(i,0,new QTableWidgetItem(stud.Sresult[i*row+(j++)]));
+        ui->selectcoursewidget->setItem(i,0,new QTableWidgetItem(stud.Sresult[i * (column - 1) + (j++)]));
         ui->selectcoursewidget->item(i,0)->setFlags(Qt::NoItemFlags);
-        ui->selectcoursewidget->setItem(i,1,new QTableWidgetItem(stud.Sresult[i*row+(j++)]));
+        ui->selectcoursewidget->setItem(i,1,new QTableWidgetItem(stud.Sresult[i * (column - 1) + (j++)]));
         ui->selectcoursewidget->item(i,1)->setFlags(Qt::NoItemFlags);
-        ui->selectcoursewidget->setItem(i,2,new QTableWidgetItem(stud.Sresult[i*row+(j++)]));
+        ui->selectcoursewidget->setItem(i,2,new QTableWidgetItem(stud.Sresult[i * (column - 1) + (j++)]));
         ui->selectcoursewidget->item(i,2)->setFlags(Qt::NoItemFlags);
-        ui->selectcoursewidget->setItem(i,3,new QTableWidgetItem(stud.Sresult[i*row+(j++)]));
+        ui->selectcoursewidget->setItem(i,3,new QTableWidgetItem(stud.Sresult[i * (column - 1) + (j++)]));
         ui->selectcoursewidget->item(i,3)->setFlags(Qt::NoItemFlags);
-        ui->selectcoursewidget->setItem(i,4,new QTableWidgetItem(stud.Sresult[i*row+(j++)]));
+        ui->selectcoursewidget->setItem(i,4,new QTableWidgetItem(stud.Sresult[i * (column - 1) + (j++)]));
         ui->selectcoursewidget->item(i,4)->setFlags(Qt::NoItemFlags);
-        ui->selectcoursewidget->setItem(i,5,new QTableWidgetItem(stud.Sresult[i*row+(j++)]));
+        ui->selectcoursewidget->setItem(i,5,new QTableWidgetItem(stud.Sresult[i * (column - 1) + (j++)]));
         ui->selectcoursewidget->item(i,5)->setFlags(Qt::NoItemFlags);
-        ui->selectcoursewidget->setItem(i,6,new QTableWidgetItem(stud.Sresult[i*row+(j++)]));
+        ui->selectcoursewidget->setItem(i,6,new QTableWidgetItem(stud.Sresult[i * (column - 1) + (j++)]));
         ui->selectcoursewidget->item(i,6)->setFlags(Qt::NoItemFlags);
-        ui->selectcoursewidget->setItem(i,7,new QTableWidgetItem(stud.Sresult[i*row+(j++)]));
+        ui->selectcoursewidget->setItem(i,7,new QTableWidgetItem(stud.Sresult[i * (column - 1) + (j++)]));
         ui->selectcoursewidget->item(i,7)->setFlags(Qt::NoItemFlags);
-        ui->selectcoursewidget->setItem(i,8,new QTableWidgetItem(stud.Sresult[i*row+(j++)]));
+        ui->selectcoursewidget->setItem(i,8,new QTableWidgetItem(stud.Sresult[i * (column - 1) + (j++)]));
         ui->selectcoursewidget->item(i,8)->setFlags(Qt::NoItemFlags);
-        ui->selectcoursewidget->setItem(i,9,new QTableWidgetItem(stud.Sresult[i*row+(j++)]));
+        ui->selectcoursewidget->setItem(i,9,new QTableWidgetItem(stud.Sresult[i * (column - 1) + (j++)]));
         ui->selectcoursewidget->item(i,9)->setFlags(Qt::NoItemFlags);
-        ui->selectcoursewidget->setItem(i,10,new QTableWidgetItem(stud.Sresult[i*row+(j++)]));
+        ui->selectcoursewidget->setItem(i,10,new QTableWidgetItem(stud.Sresult[i * (column - 1) + (j++)]));
         ui->selectcoursewidget->item(i,10)->setFlags(Qt::NoItemFlags);
-        ui->selectcoursewidget->setItem(i,11,new QTableWidgetItem(stud.Sresult[i*row+(j++)]));
+        ui->selectcoursewidget->setItem(i,11,new QTableWidgetItem(stud.Sresult[i * (column - 1) + (j++)]));
         ui->selectcoursewidget->item(i,11)->setFlags(Qt::NoItemFlags);
-        ui->selectcoursewidget->setItem(i,12,new QTableWidgetItem(stud.Sresult[i*row+(j++)]));
+        ui->selectcoursewidget->setItem(i,12,new QTableWidgetItem(stud.Sresult[i * (column - 1) + (j++)]));
         ui->selectcoursewidget->item(i,12)->setFlags(Qt::NoItemFlags);
 
         QTableWidgetItem *check = new QTableWidgetItem();
@@ -211,5 +213,5 @@ void student::on_searchbutton_click(){
         check->setTextAlignment(Qt::AlignCenter);
         ui->selectcoursewidget->setItem(i,13,check);
     }
+    stud.Sresult.clear();
 }
-

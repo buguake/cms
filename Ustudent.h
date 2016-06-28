@@ -11,7 +11,7 @@ private:
 public:
     vector <QString> Sresult;
     UStudent(void);  //constructors
-    UStudent(const int ID, const string &password, const string &name, const string &deptname);
+    UStudent(const int ID, const string &password, const string &name = "", const string &deptname = "");
     UStudent(const int ID, const string &password, const string &name, const string &deptname, const string &birthday, const string &gender);
     virtual ~UStudent(){}    //destructor
 
@@ -23,12 +23,12 @@ public:
     inline void SetBirthday(const string &birthday);
     inline void SetGender(const string &gender);  // seemes trivial but actually useful when you sign up
 
-    int ViewMyCourses() const;  // show courses that the Student takes
+    int ViewMyCourses();  // show courses that the Student takes
     bool Takes(const Section &s) const;  // take a course
     bool Drops(const Section &s) const;  // drop a course
 
-    int SearchSection(const int courseID) const;    //search section according to courseID
-    int SearchSection(const string &title) const;   //search section according to course title
+    int SearchSection(const int courseID);    //search section according to courseID
+    int SearchSection(const string &title);   //search section according to course title
 };
 
 /*inline functions*/
