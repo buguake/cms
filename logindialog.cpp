@@ -5,6 +5,7 @@
 #include"student.h"
 #include"teacher.h"
 #include"manager.h"
+#include <QCryptographicHash>
 
 extern student *Student;
 extern teacher *Teacher;
@@ -16,7 +17,7 @@ LoginDialog::LoginDialog(QWidget *parent) :
     ui(new Ui::LoginDialog)
 {
     ui->setupUi(this);
-
+    ui->passwordline->setEchoMode(QLineEdit::Password);
     connect(ui->checkinbutton, &QPushButton::clicked, this, &LoginDialog::on_checkinbutton_click);
 
     QPalette palette;
@@ -35,7 +36,9 @@ void LoginDialog::on_checkinbutton_click(){
     QString key=ui->passwordline->text();
     bool ok;
     int ID=name.toInt(&ok,10);
-    string password=key.toStdString();
+    QByteArray hashedValue;
+    hashedValue = QCryptographicHash::hash(key.toUtf8(), QCryptographicHash::Md5);
+    string password = hashedValue.toHex().toStdString();
     if(ui->studentratdio->isChecked()){
         Student = new student(0, ID, password);
         // @ST set ID and password in constructor

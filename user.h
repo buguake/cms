@@ -20,7 +20,7 @@ class User
 protected:
     int ID;
 private:
-    char password[16];  // 128-bit hashed value
+    char password[32];  // 128-bit hashed value, ascii armored
     UserType type;
     string name;
     string deptName;
