@@ -6,7 +6,7 @@
 #include <QSqlDatabase>
 #include <vector>
 #include <iostream>
-
+//#define REMOTE_SERVER
 using namespace std;
 
 student *Student;
@@ -16,10 +16,17 @@ manager *Manager;
 int main(int argc, char *argv[])
 {
     QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
+#ifdef REMOTE_SERVER
     db.setHostName("xjiajiahao.tk");
     db.setDatabaseName("cms");
     db.setUserName("cms");
     db.setPassword("1897");
+#else
+    db.setHostName("localhost");
+    db.setDatabaseName("cms");
+    db.setUserName("root");
+    db.setPassword("1897");
+#endif
     int ok = db.open();
     if (!ok)
     {
