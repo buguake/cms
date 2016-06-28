@@ -16,18 +16,13 @@ manager *Manager;
 int main(int argc, char *argv[])
 {
     QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
-<<<<<<< HEAD
-=======
 #ifdef REMOTE_SERVER
->>>>>>> Crypto
     db.setHostName("xjiajiahao.tk");
     db.setDatabaseName("cms");
     db.setUserName("cms");
     db.setPassword("1897");
-<<<<<<< HEAD
     db.open();
 
-=======
 #else
     db.setHostName("localhost");
     db.setDatabaseName("cms");
@@ -41,7 +36,6 @@ int main(int argc, char *argv[])
         return 1;
     }
     cout << "Connectd to database. " << endl;
->>>>>>> Crypto
     QApplication a(argc, argv);
 
     LoginDialog logindialog;
