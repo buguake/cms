@@ -6,7 +6,7 @@
 #include <QSqlDatabase>
 #include <vector>
 #include <iostream>
-//#define REMOTE_SERVER
+#define REMOTE_SERVER
 using namespace std;
 
 student *Student;
