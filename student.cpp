@@ -9,8 +9,8 @@
 #include"section.h"
 
 //int a = 0;  // what the hell ?
-student::student(QWidget *parent) :
-    QMainWindow(parent),
+student::student(QWidget *parent, int ID, const string &password) :
+    QMainWindow(parent), stud(ID, password),
     ui(new Ui::student)
 {
 
@@ -25,7 +25,7 @@ student::student(QWidget *parent) :
     ui->mycoursewidget->setColumnCount(column);
     ui->mycoursewidget->setRowCount(row);
     ui->mycoursewidget->setHorizontalHeaderLabels(QStringList() << "课程号" <<"课程名"<<"开课院系"<< "学分" << "开课号"<< "学季"<<"学年"<<"成绩"<<"是否退课");
-    /*
+
     for(i=0;i<row;i++){
         j=0;
         ui->mycoursewidget->setItem(i,0,new QTableWidgetItem(stud.Sresult[i*row+(j++)]));
@@ -51,7 +51,7 @@ student::student(QWidget *parent) :
         check->setTextAlignment(Qt::AlignCenter);
         ui->mycoursewidget->setItem(i,8,check);
     }
-    */
+    
     /*********网上选课部分**********/
     QStringList key;
     key << "课程号" << "课程名称";
@@ -214,4 +214,3 @@ void student::on_searchbutton_click(){
     }
     stud.Sresult.clear();
 }
-

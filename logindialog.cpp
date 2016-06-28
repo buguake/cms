@@ -37,9 +37,11 @@ void LoginDialog::on_checkinbutton_click(){
     int ID=name.toInt(&ok,10);
     string password=key.toStdString();
     if(ui->studentratdio->isChecked()){
-        Student = new student();
+        Student = new student(0, ID, password);
+        /*
         Student->stud.SetID(ID);
         Student->stud.SetPassword(password.c_str());
+        */
         // @ST
         Student->stud.SetType("student");
         if(Student->stud.Login()){
@@ -63,9 +65,3 @@ void LoginDialog::on_checkinbutton_click(){
         }
     }
 }
-
-
-
-
-
-
