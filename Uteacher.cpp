@@ -133,7 +133,7 @@ int UTeacher::ViewMyOldStudent(const Section &s)  //show students who takes the 
     str += QString::number(s.GetCourseID());
     str += " and secID = ";
     str += QString::number(s.GetSecID());
-    /* @ST students in 2016 can be marked
+    /* @ST students in 2016 can be marked @TODO
     str += " and year = 2016 and semester = 'Summer'";
     */
     str += " and year = 2016";
@@ -170,7 +170,7 @@ bool UTeacher::Marks(int ID, const Section &s, double grade)
     str += QString::number(s.GetCourseID());
     str += " and secID = ";
     str += QString::number(s.GetSecID());
-    /* @ST here, it should be available if the we take the course in 2016
+    /* @ST here, it should be available if the we take the course in 2016 @TODO
     str += " and year = 2016 and semester = 'Summer'";
     */
     QSqlQuery query;

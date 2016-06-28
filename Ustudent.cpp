@@ -193,7 +193,7 @@ int UStudent::SearchSection(const int courseID)
 
     str = "select * from Section where courseID = ";
     str += QString::number(courseID);
-    /* @ST I just want to select all courses available in 2016
+    /* @ST I just want to select all courses available in 2016 @TODO
     str += " and year = 2016 and semester = 'Fall' union select * from Section where courseID = ";
     str += QString::number(courseID);
     str += " and year = 2016 and semester = 'Winter'";
