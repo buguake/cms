@@ -36,15 +36,18 @@ void LoginDialog::on_checkinbutton_click(){
     bool ok;
     int ID=name.toInt(&ok,10);
     string password=key.toStdString();
-
     if(ui->studentratdio->isChecked()){
+        Student = new student();
         Student->stud.SetID(ID);
         Student->stud.SetPassword(password.c_str());
+        // @ST
+        Student->stud.SetType("student");
         if(Student->stud.Login()){
           QDialog::accept();
         }
     }
     else if(ui->teacherradio->isChecked()){
+        Teacher = new teacher;
         Teacher->teac.SetID(ID);
         Teacher->teac.SetPassword(password.c_str());
         if(Teacher->teac.Login()){
@@ -52,6 +55,7 @@ void LoginDialog::on_checkinbutton_click(){
         }
     }
     else if(ui->managerradio->isChecked()){
+        Manager = new manager;
         Manager->admi.SetID(ID);
         Manager->admi.SetPassword(password.c_str());
         if(Manager->admi.Login()){

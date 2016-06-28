@@ -25,11 +25,12 @@ student::student(QWidget *parent) :
     ui->mycoursewidget->setColumnCount(column);
     ui->mycoursewidget->setRowCount(row);
     ui->mycoursewidget->setHorizontalHeaderLabels(QStringList() << "课程号" <<"课程名"<<"开课院系"<< "学分" << "开课号"<< "学季"<<"学年"<<"成绩"<<"是否退课");
+    /*
     for(i=0;i<row;i++){
         j=0;
         ui->mycoursewidget->setItem(i,0,new QTableWidgetItem(stud.Sresult[i*row+(j++)]));
-        /*使（i，0）这个位置的item不能修改（注意，设置为不能修改的这个坐标的item必须存在
-         ，你可以试着把for循环的i<10改为i<20，因为这个表格最多有10行所以会报错）*/
+        //使（i，0）这个位置的item不能修改（注意，设置为不能修改的这个坐标的item必须存在
+        // ，你可以试着把for循环的i<10改为i<20，因为这个表格最多有10行所以会报错）
         ui->mycoursewidget->item(i,0)->setFlags(Qt::NoItemFlags);
         ui->mycoursewidget->setItem(i,1,new QTableWidgetItem(stud.Sresult[i*row+(j++)]));
         ui->mycoursewidget->item(i,1)->setFlags(Qt::NoItemFlags);
@@ -50,7 +51,7 @@ student::student(QWidget *parent) :
         check->setTextAlignment(Qt::AlignCenter);
         ui->mycoursewidget->setItem(i,8,check);
     }
-
+    */
     /*********网上选课部分**********/
     QStringList key;
     key << "课程号" << "课程名称";

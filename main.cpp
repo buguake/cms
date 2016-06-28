@@ -23,9 +23,7 @@ int main(int argc, char *argv[])
     db.open();
 
     QApplication a(argc, argv);
-    Student = new student;
-    Teacher = new teacher;
-    Manager = new manager;
+
     LoginDialog logindialog;
     QPalette palette;
     palette.setColor(QPalette::Background, QColor(255,255,255));

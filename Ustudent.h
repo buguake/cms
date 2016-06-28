@@ -11,7 +11,7 @@ private:
 public:
     vector <QString> Sresult;
     UStudent(void);  //constructors
-    UStudent(const int ID, const string &password, const string &name, const string &deptname);
+    UStudent(const int ID, const string &password, const string &name = "", const string &deptname = "");
     UStudent(const int ID, const string &password, const string &name, const string &deptname, const string &birthday, const string &gender);
     virtual ~UStudent(){}    //destructor
 
