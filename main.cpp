@@ -16,12 +16,17 @@ manager *Manager;
 int main(int argc, char *argv[])
 {
     QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
-    db.setHostName("localhost");
+    db.setHostName("xjiajiahao.tk");
     db.setDatabaseName("cms");
-    db.setUserName("jiahao.xie");
+    db.setUserName("cms");
     db.setPassword("1897");
-    db.open();
-
+    int ok = db.open();
+    if (!ok)
+    {
+        std::cout << "Failed to connect to database, please check your network." << endl;
+        return 1;
+    }
+    cout << "Connectd to database. " << endl;
     QApplication a(argc, argv);
 
     LoginDialog logindialog;
