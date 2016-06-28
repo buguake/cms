@@ -14,7 +14,7 @@ int UTeacher::ViewMyCourses()
 {
     /*select from teacher table*/
 
-    int RecordNum;
+    int RecordNum = 0;
     QString str = "select * from Teaches where ID = ";
     str += QString::number(ID);
 

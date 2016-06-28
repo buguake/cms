@@ -21,7 +21,7 @@ int UStudent::ViewMyCourses()
 
     /*select from takes table*/
 
-    int RecordNum;
+    int RecordNum = 0;
 
     QString str = "select * from Takes where ID = ";
     str += QString::number(ID);
@@ -238,7 +238,7 @@ int UStudent::SearchSection(const int courseID)
 int UStudent::SearchSection(const string &title)
 {
     QString courseID, credits;
-    int RecordNum;
+    int RecordNum = 0;
 
     /*select from course table*/
 
