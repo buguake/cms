@@ -122,7 +122,7 @@ int Administrator::FindStudent(const int ID)
 
     QString str = "select * from Student where ID = ";
     str += QString::number(ID);
-    int RecordNum;
+    int RecordNum = 0;
 
     QSqlQuery query;
     if(!query.exec(str))
@@ -220,7 +220,8 @@ int Administrator::FindTeacher(const int ID)
 
     QString str = "select * from Teacher where ID = ";
     str += QString::number(ID);
-    int RecordNum;
+    // @ST damn it, should have benn initialized
+    int RecordNum = 0;
 
     QSqlQuery query;
     if(!query.exec(str))
@@ -319,7 +320,7 @@ int Administrator::FindAdministrator(const int ID)
 
     QString str = "select * from Administrator where ID = ";
     str += QString::number(ID);
-    int RecordNum;
+    int RecordNum = 0;
 
     QSqlQuery query;
     if(!query.exec(str))
@@ -419,7 +420,7 @@ int Administrator::FindCourse(const int courseID)
 
     QString str = "select * from Course where courseID = ";
     str += QString::number(courseID);
-    int RecordNum;
+    int RecordNum = 0;
 
     QSqlQuery query;
     if(!query.exec(str))
@@ -561,7 +562,7 @@ int Administrator::FindSection(const int courseID, const int secID)
     str += QString::number(courseID);
     str += " and secID = ";
     str += QString::number(secID);
-    int RecordNum;
+    int RecordNum = 0;
 
     QSqlQuery query;
     if(!query.exec(str))
@@ -575,4 +576,3 @@ int Administrator::FindSection(const int courseID, const int secID)
     }
     return RecordNum;
 }
-

@@ -61,9 +61,12 @@ void LoginDialog::on_checkinbutton_click(){
         }
     }
     else if(ui->managerradio->isChecked()){
-        Manager = new manager;
+        Manager = new manager(0, ID, password);
+        Manager->admi.SetType("administrator");
+        /* @ST
         Manager->admi.SetID(ID);
         Manager->admi.SetPassword(password.c_str());
+        */
         if(Manager->admi.Login()){
             QDialog::done(3);
         }

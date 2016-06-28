@@ -7,8 +7,8 @@
 #include "QDebug"
 #include "QMessageBox"
 
-manager::manager(QWidget *parent) :
-    QMainWindow(parent),
+manager::manager(QWidget *parent, int ID, const string &password) :
+    QMainWindow(parent), admi(ID, password),
     ui(new Ui::manager)
 {
 
@@ -42,7 +42,7 @@ manager::manager(QWidget *parent) :
     ui->course_table->setHorizontalHeaderLabels(QStringList()<<"课程号"<<"课程名"<<"开课院系"<<"学分"<<"是否更新"<<"是否删除");
 
     ui->sec_table->setColumnCount(11);
-    ui->sec_table->setHorizontalHeaderLabels(QStringList()<<"课程号"<<"教学班号"<<"学期"<<"学年"<<"容量"<<"余量"<<"教学楼"<<"房间号"<<"教学时间");
+    ui->sec_table->setHorizontalHeaderLabels(QStringList()<<"课程号"<<"教学班号"<<"学期"<<"学年"<<"容量"<<"余量"<<"教学楼"<<"房间号"<<"教学时间" << "是否更新" << "是否删除");
 }
 
 manager::~manager()
@@ -240,7 +240,7 @@ void manager::on_teacherwidget_click(int row, int col)
                 ID = temp->text().toInt();
                 temp=ui->teacher_table->item(row,1);
                 name = temp->text().toStdString();
-                temp=ui->teacher_table->item(row,4);
+                temp=ui->teacher_table->item(row, 2);
                 deptname = temp->text().toStdString();
                 UTeacher tea(ID,"******",name,deptname);
                 bool status=admi.UpdateTeacher(tea);
@@ -273,7 +273,7 @@ void manager::on_teacherwidget_click(int row, int col)
                 ID = temp->text().toInt();
                 temp=ui->teacher_table->item(row,1);
                 name = temp->text().toStdString();
-                temp=ui->teacher_table->item(row,4);
+                temp=ui->teacher_table->item(row, 2);
                 deptname = temp->text().toStdString();
                 UTeacher tea(ID,"******",name,deptname);
                 bool status=admi.RemoveTeacher(tea);
@@ -317,7 +317,7 @@ void manager::on_admsearchbutton_click(){
     ID=ui->mana_id_sear->text().toInt();
     //麻烦梓敏写一段，通过key，content查询数据库得到课程信息
     row=admi.FindAdministrator(ID);
-    ui->teacher_table->setRowCount(row);
+    ui->mana_table->setRowCount(row);
     /*********下面是示意如何处理梓敏返回的字符串*******/
     int i, j;
     for(i=0;i<row;i++){
@@ -357,7 +357,7 @@ void manager::on_admwidget_click(int row, int col)
                 ID = temp->text().toInt();
                 temp=ui->mana_table->item(row,1);
                 name = temp->text().toStdString();
-                temp=ui->mana_table->item(row,4);
+                temp=ui->mana_table->item(row,2);
                 deptname = temp->text().toStdString();
                 Administrator adm(ID,"******",name,deptname);
                 bool status=admi.UpdateAdministrator(adm);
@@ -547,8 +547,8 @@ void manager::on_sectionaddbutton_click(){
     capacity=ui->sec_capacity->text().toInt();
     roomno=ui->sec_roomno->text().toInt();
     timeslotid=ui->sec_time->text().toInt();
-    semester=ui->sec_semester->text().toInt();
-    building=ui->sec_building->text().toInt();
+    semester=ui->sec_semester->text().toStdString();
+    building=ui->sec_building->text().toStdString();
     Section sec(courseID,secID,semester,year,capacity,building,roomno,timeslotid);
     bool status=admi.AddSection(sec);
     if(status){
@@ -690,10 +690,3 @@ void manager::on_sectionwidget_click(int row, int col)
         }
     }
 }
-
-
-
-
-
-
-

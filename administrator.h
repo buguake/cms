@@ -10,7 +10,7 @@ class Administrator : public User
 public:
     vector <QString> Aresult;
     Administrator(void);    //construtors
-    Administrator(const int ID, const string &password, const string &name, const string &deptname);
+    Administrator(const int ID, const string &password, const string &name = "", const string &deptname = "");
     virtual ~Administrator(){}  //destructor
 
     bool AddStudent(const UStudent &s) const;    //add a student

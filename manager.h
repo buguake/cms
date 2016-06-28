@@ -14,7 +14,7 @@ class manager : public QMainWindow
 
 public:
     Administrator admi;
-    explicit manager(QWidget *parent = 0);
+    explicit manager(QWidget *parent = 0, int ID = -1, const string &password = "");
     ~manager();
 
 private:
@@ -38,4 +38,3 @@ private slots:
 };
 
 #endif // MANAGER_H
-
