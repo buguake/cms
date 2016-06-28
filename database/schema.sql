@@ -14,12 +14,7 @@ create table User
 (
     ID int ZEROFILL UNSIGNED NOT NULL,
     type varchar(13) CHECK (type in ('student', 'teacher', 'administrator')),
-<<<<<<< HEAD
-    #password binary(16) DEFAULT x'e10adc3949ba59abbe56e057f20f883e',  # default value: UNHEX(MD5('123456'))
-    password varchar(16) DEFAULT '123456',  # default value: UNHEX(MD5('123456'))
-=======
     password char(32) DEFAULT 'e10adc3949ba59abbe56e057f20f883e',  # default value: UNHEX(MD5('123456'))
->>>>>>> Crypto
     primary key(ID, type)
 );
 
