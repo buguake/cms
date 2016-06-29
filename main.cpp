@@ -54,6 +54,9 @@ int main(int argc, char *argv[])
     else if(check==3) {
         Manager->show();
     }
-
+    else
+    {
+        exit(0);
+    }
     return a.exec();
 }
